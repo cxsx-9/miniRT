@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   camera.c                                           :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: tkraikua <tkraikua@student.42.th>          +#+  +:+       +#+        */
+/*   By: csantivi <csantivi@student.42bangkok.co    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/06/25 16:34:16 by tkraikua          #+#    #+#             */
-/*   Updated: 2023/06/26 01:00:44 by tkraikua         ###   ########.fr       */
+/*   Updated: 2023/06/28 22:09:21 by csantivi         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -47,7 +47,7 @@ void	calculate_ray(t_camera *camera)
 		while (x < WIN_WIDTH)
 		{
 			xx = (double) x / (double) WIN_WIDTH * 2.0 - 1.0;
-			yy = (double) y / (double) WIN_HEIGHT * 2.0 - 1.0;
+			yy = -((double) y / (double) WIN_HEIGHT * 2.0 - 1.0);
 
 			xx *= camera->aspect_ratio;
 

@@ -6,13 +6,13 @@
 /*   By: csantivi <csantivi@student.42bangkok.co    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/06/26 17:41:55 by csantivi          #+#    #+#             */
-/*   Updated: 2023/06/28 00:29:53 by csantivi         ###   ########.fr       */
+/*   Updated: 2023/06/29 00:54:17 by csantivi         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "miniRT.h"
 
-int is_white_space(char c)
+int	is_white_space(char c)
 {
 	if ((c >= 9 && c <= 13) || c == 32)
 		return (1);
@@ -80,7 +80,7 @@ char	**ft_split_white(char *s)
 	int		n;
 	char	**str;
 
-	if (!s)
+	if (!s || !s[0])
 		return (NULL);
 	n = word_count(s);
 	str = (char **)malloc(sizeof(char *) * (n + 1));

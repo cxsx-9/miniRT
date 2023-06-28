@@ -6,23 +6,15 @@
 /*   By: csantivi <csantivi@student.42bangkok.co    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/06/28 15:34:02 by csantivi          #+#    #+#             */
-/*   Updated: 2023/06/28 16:37:02 by csantivi         ###   ########.fr       */
+/*   Updated: 2023/06/29 01:06:19 by csantivi         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "miniRT.h"
 
-int	same_str(char *a, char *b)
-{
-	if (!ft_strncmp(a, b, ft_strlen(a))
-		&& ft_strlen(a) == ft_strlen(b))
-		return (1);
-	return (0);
-}
-
 int	good_integer(char *num, int print)
 {
-	int i;
+	int	i;
 
 	i = 0;
 	if (num[i] == '+' || num[i] == '-')
@@ -43,8 +35,8 @@ int	good_integer(char *num, int print)
 
 int	good_double(char *num, int print)
 {
-	int dot;
-	int i;
+	int	dot;
+	int	i;
 
 	dot = 1;
 	i = 0;
@@ -52,7 +44,7 @@ int	good_double(char *num, int print)
 		i++;
 	while (num[i] && dot >= 0)
 	{
-		if (num[i] == '.')
+		if (i != 0 && num[i] == '.' )
 		{
 			dot--;
 			i++;
@@ -69,14 +61,25 @@ int	good_double(char *num, int print)
 	return (1);
 }
 
-int good_coordinate(char **input)
+int	good_unit(char *num)
+{
+	if (!same_str(num, "-1") && !same_str(num, "1"))
+	{
+		ft_putstr_fd(": Bad unit vector variable ", 2);
+		return (0);
+	}
+	return (1);
+}
+
+int	good_coordinate(char **input, int unit_vect)
 {
 	int	i;
 
 	i = -1;
 	while (input[++i])
 	{
-		if (!good_double(input[i], 1))
+		if (!good_double(input[i], 1)
+			|| (unit_vect && !good_unit(input[i])))
 			return (0);
 	}
 	if (i != 3)
@@ -88,7 +91,7 @@ int good_coordinate(char **input)
 	return (1);
 }
 
-int good_color(char **input)
+int	good_color(char **input)
 {
 	int	i;
 
@@ -97,6 +100,11 @@ int good_color(char **input)
 	{
 		if (!good_integer(input[i], 1))
 			return (0);
+		if (is_inside('-', input[i]))
+		{
+			ft_putstr_fd(": color should be positive ", 2);
+			return (0);
+		}
 	}
 	if (i != 3)
 	{

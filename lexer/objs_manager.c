@@ -6,7 +6,7 @@
 /*   By: csantivi <csantivi@student.42bangkok.co    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/06/28 16:53:17 by csantivi          #+#    #+#             */
-/*   Updated: 2023/06/28 17:08:24 by csantivi         ###   ########.fr       */
+/*   Updated: 2023/06/29 00:54:49 by csantivi         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -23,8 +23,8 @@ t_obj	*lst_objs_last(t_obj *objs)
 
 void	lst_objs_addback(t_obj **objs, t_obj *new)
 {
-	t_obj *last;
-	
+	t_obj	*last;
+
 	if (!objs || !new)
 		return ;
 	if (*objs)

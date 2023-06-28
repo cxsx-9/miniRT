@@ -1,42 +1,41 @@
 /* ************************************************************************** */
 /*                                                                            */
 /*                                                        :::      ::::::::   */
-/*   ft_atof.c                                          :+:      :+:    :+:   */
+/*   lexer_until.c                                      :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
 /*   By: csantivi <csantivi@student.42bangkok.co    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
-/*   Created: 2023/06/28 15:51:35 by csantivi          #+#    #+#             */
-/*   Updated: 2023/06/29 00:51:49 by csantivi         ###   ########.fr       */
+/*   Created: 2023/06/29 00:57:51 by csantivi          #+#    #+#             */
+/*   Updated: 2023/06/29 01:05:57 by csantivi         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "miniRT.h"
 
-double	ft_atof(char *str)
+int	args_count(char **str)
 {
-	int		i;
-	double	neg;
-	double	num;
-	double	dnum;
+	int	size;
 
-	neg = 1;
-	i = 0;
-	num = 0;
-	dnum = 0.1;
-	if (str[i] == '-' || str[i] == '+')
-		if (str[i++] == '-')
-			neg *= -1;
-	while (str[i] >= '0' && str[i] <= '9')
-		num = num * 10 + str[i++] - '0';
-	if (str[i] == '.')
-	{
-		i++;
-		while (str[i] >= '0' && str[i] <= '9')
-		{
-			num += (dnum * (str[i++] - '0'));
-			dnum /= 10;
-			i++;
-		}
-	}
-	return (neg * num);
+	size = 0;
+	while (str[size])
+		size++;
+	return (size);
+}
+
+int	is_inside(char c, char *set)
+{
+	while (*set)
+		if (*set++ == c)
+			return (1);
+	return (0);
+}
+
+int	same_str(char *a, char *b)
+{
+	if (a == 0 || b == 0)
+		return (0);
+	if (!ft_strncmp(a, b, ft_strlen(a))
+		&& ft_strlen(a) == ft_strlen(b))
+		return (1);
+	return (0);
 }

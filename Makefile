@@ -17,6 +17,9 @@ SRC =	srcs/main.c		\
 		lexer/get_next_line_utils.c	\
 		lexer/ft_split_white.c	\
 		lexer/objs_manager.c	\
+		lexer/lexer_until.c		\
+		lexer/get_variable.c	\
+		lexer/get_object.c		\
 		lexer/free.c
 
 OBJ = $(SRC:.c=.o)
