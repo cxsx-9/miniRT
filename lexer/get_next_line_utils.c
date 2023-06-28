@@ -6,7 +6,7 @@
 /*   By: csantivi <csantivi@student.42bangkok.co    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/03/19 21:51:11 by csantivi          #+#    #+#             */
-/*   Updated: 2022/03/22 14:52:05 by csantivi         ###   ########.fr       */
+/*   Updated: 2023/06/28 15:46:55 by csantivi         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -66,7 +66,7 @@ char	*collect(char *current, char *buff)
 	return (new);
 }
 
-char	*get_line(char *current)
+char	*get_the_line(char *current)
 {
 	int		i;
 	char	*new;

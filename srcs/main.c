@@ -6,7 +6,7 @@
 /*   By: csantivi <csantivi@student.42bangkok.co    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/06/08 13:42:53 by tkraikua          #+#    #+#             */
-/*   Updated: 2023/06/28 01:21:04 by csantivi         ###   ########.fr       */
+/*   Updated: 2023/06/28 17:14:10 by csantivi         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -165,12 +165,13 @@ int main(int ac, char **av)
 	if (ac != 2)
 		return (0);
 	minirt = init_minirt();
-	if (!check_all(av[1], minirt))
+	if (!check_all(av[1]))
 	{
-		dprintf(2, "fail\n");
+		ft_putstr_fd(": Fail\n", 2);
 		close_event();
 	}
 	printf("Running Program\n");
+	get_all(av[1], minirt);
 	set_object(minirt);
 	draw(minirt);
 	mlx_mouse_hook(minirt->win, &mouse_event, NULL);

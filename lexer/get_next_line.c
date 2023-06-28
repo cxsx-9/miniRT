@@ -6,7 +6,7 @@
 /*   By: csantivi <csantivi@student.42bangkok.co    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/03/19 22:17:52 by csantivi          #+#    #+#             */
-/*   Updated: 2022/03/21 18:30:24 by csantivi         ###   ########.fr       */
+/*   Updated: 2023/06/28 15:46:44 by csantivi         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -46,7 +46,7 @@ char	*get_next_line(int fd)
 	current = read_and_collect(fd, current);
 	if (!current)
 		return (NULL);
-	line = get_line(current);
+	line = get_the_line(current);
 	current = new_current(current);
 	return (line);
 }

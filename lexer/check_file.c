@@ -6,7 +6,7 @@
 /*   By: csantivi <csantivi@student.42bangkok.co    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/06/25 13:44:29 by csantivi          #+#    #+#             */
-/*   Updated: 2023/06/28 00:42:19 by csantivi         ###   ########.fr       */
+/*   Updated: 2023/06/28 15:37:23 by csantivi         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -60,8 +60,7 @@ int	check_access(char *name)
 	return (1);
 }
 
-
-int check_input(char *name, t_minirt *minirt)
+int check_input(char *name)
 {
 	char *line;
 	int fd;
@@ -73,7 +72,7 @@ int check_input(char *name, t_minirt *minirt)
 	while (line != NULL && error_status)
 	{
 		if (line[0] != 0)
-			error_status = check_line(line, minirt);
+			error_status = check_line(line);
 		free(line);
 		line = get_next_line(fd);
 	}
@@ -84,13 +83,13 @@ int check_input(char *name, t_minirt *minirt)
 	return (error_status);
 }
 
-int	check_all(char *name, t_minirt *minirt)
+int	check_all(char *name)
 {
 	int fd;
 
 	if (!check_file_name(name) || !check_access(name))
 		return (0);
-	if (!check_input(name, minirt))
+	if (!check_input(name))
 		return (0);
 	return (1);
 }
