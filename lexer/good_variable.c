@@ -6,66 +6,34 @@
 /*   By: csantivi <csantivi@student.42bangkok.co    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/06/28 15:34:02 by csantivi          #+#    #+#             */
-/*   Updated: 2023/06/29 01:06:19 by csantivi         ###   ########.fr       */
+/*   Updated: 2023/06/29 15:52:12 by csantivi         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "miniRT.h"
 
-int	good_integer(char *num, int print)
-{
-	int	i;
-
-	i = 0;
-	if (num[i] == '+' || num[i] == '-')
-		i++;
-	while (num[i])
-	{
-		if (num[i] >= '0' && num[i] <= '9')
-			i++;
-		else
-		{
-			if (print)
-				ft_putstr_fd(": Bad integer variable ", 2);
-			return (0);
-		}
-	}
-	return (1);
-}
-
-int	good_double(char *num, int print)
-{
-	int	dot;
-	int	i;
-
-	dot = 1;
-	i = 0;
-	if (num[i] == '+' || num[i] == '-')
-		i++;
-	while (num[i] && dot >= 0)
-	{
-		if (i != 0 && num[i] == '.' )
-		{
-			dot--;
-			i++;
-		}
-		if (num[i] >= '0' && num[i] <= '9')
-			i++;
-		else
-		{
-			if (print)
-				ft_putstr_fd(": Bad double variable ", 2);
-			return (0);
-		}
-	}
-	return (1);
-}
-
 int	good_unit(char *num)
 {
-	if (!same_str(num, "-1") && !same_str(num, "1"))
+	double	n;
+
+	n = ft_atof(num);
+	if (n > 1.0 || n < -1.0)
 	{
 		ft_putstr_fd(": Bad unit vector variable ", 2);
+		return (0);
+	}
+	return (1);
+}
+
+int	good_diameter(char *num, int print)
+{
+	int	neg;
+
+	neg = is_inside('-', num);
+	if (!good_double(num, print) || neg)
+	{
+		if (neg)
+			ft_putstr_fd(": Diameter should be positive ", 2);
 		return (0);
 	}
 	return (1);

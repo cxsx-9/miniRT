@@ -8,18 +8,21 @@ SRC =	srcs/main.c		\
 		srcs/put_pixel.c	\
 		srcs/camera.c		\
 		srcs/utils.c		\
-		lexer/check_file.c	\
+		lexer/error_message.c	\
+		lexer/check_file.c		\
 		lexer/check_infile.c	\
-		lexer/good_variable.c	\
+		lexer/check_object.c	\
 		lexer/get_infile.c		\
-		lexer/ft_atof.c			\
+		lexer/get_variable.c	\
+		lexer/get_object.c		\
+		lexer/good_number.c		\
+		lexer/good_variable.c	\
 		lexer/get_next_line.c	\
 		lexer/get_next_line_utils.c	\
 		lexer/ft_split_white.c	\
-		lexer/objs_manager.c	\
+		lexer/ft_atof.c			\
 		lexer/lexer_until.c		\
-		lexer/get_variable.c	\
-		lexer/get_object.c		\
+		lexer/objs_manager.c	\
 		lexer/free.c
 
 OBJ = $(SRC:.c=.o)

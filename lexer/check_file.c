@@ -6,7 +6,7 @@
 /*   By: csantivi <csantivi@student.42bangkok.co    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/06/25 13:44:29 by csantivi          #+#    #+#             */
-/*   Updated: 2023/06/29 00:59:20 by csantivi         ###   ########.fr       */
+/*   Updated: 2023/06/29 16:06:18 by csantivi         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -64,9 +64,11 @@ int	check_input(char *name)
 {
 	char	*line;
 	int		fd;
+	int		i;
 	int		error_status;
 
 	fd = open(name, O_RDONLY);
+	i = 0;
 	error_status = 1;
 	line = get_next_line(fd);
 	while (line != NULL && error_status)
@@ -75,9 +77,10 @@ int	check_input(char *name)
 			error_status = check_line(line);
 		free(line);
 		line = get_next_line(fd);
+		i++;
 	}
 	if (error_status == 0)
-		ft_putstr_fd(": Bad input\n", 2);
+		error_line(name, i);
 	free(line);
 	close(fd);
 	return (error_status);
