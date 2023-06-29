@@ -6,17 +6,14 @@
 /*   By: csantivi <csantivi@student.42bangkok.co    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/06/28 15:27:12 by csantivi          #+#    #+#             */
-/*   Updated: 2023/06/29 01:11:53 by csantivi         ###   ########.fr       */
+/*   Updated: 2023/06/29 16:41:19 by csantivi         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "miniRT.h"
 
-void	get_line(char *line, t_minirt *minirt)
+void	get_object(char **data, t_minirt *minirt)
 {
-	char	**data;
-
-	data = ft_split_white(line);
 	if (same_str(data[0], "C"))
 		get_camera(data, minirt);
 	else if (same_str(data[0], "sp"))
@@ -34,7 +31,7 @@ void	get_all(char *name, t_minirt *minirt)
 	while (line != NULL)
 	{
 		if (line[0] != 0)
-			get_line(line, minirt);
+			get_object(ft_split_white(line), minirt);
 		free(line);
 		line = get_next_line(fd);
 	}

@@ -6,7 +6,7 @@
 /*   By: csantivi <csantivi@student.42bangkok.co    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/06/29 00:57:51 by csantivi          #+#    #+#             */
-/*   Updated: 2023/06/29 01:05:57 by csantivi         ###   ########.fr       */
+/*   Updated: 2023/06/29 16:37:04 by csantivi         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -38,4 +38,16 @@ int	same_str(char *a, char *b)
 		&& ft_strlen(a) == ft_strlen(b))
 		return (1);
 	return (0);
+}
+
+void	show_2d(char **input)
+{
+	int	i;
+
+	if (!input || !*input)
+		return ;
+	i = 0;
+	while (input[i])
+		dprintf(2, "%s,", input[i++]);
+	dprintf(2, "\n");
 }

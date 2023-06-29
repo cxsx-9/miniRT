@@ -6,7 +6,7 @@
 /*   By: csantivi <csantivi@student.42bangkok.co    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/06/26 16:32:18 by csantivi          #+#    #+#             */
-/*   Updated: 2023/06/29 16:06:49 by csantivi         ###   ########.fr       */
+/*   Updated: 2023/06/29 16:41:09 by csantivi         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -39,7 +39,7 @@ int 	get_color_input(char **input, t_color *color);
 int 	get_integer(char *num, int *des);
 int     get_double(char *num, double *des);
 
-void	get_line(char *line, t_minirt *minirt);
+void	get_object(char **data, t_minirt *minirt);
 void	get_all(char *name, t_minirt *minirt);
 
 void	get_camera(char **data, t_minirt *minirt);
@@ -51,5 +51,7 @@ void	error_line(char *name, int line);
 int	    is_inside(char c, char *set);
 int	    args_count(char **str);
 int		same_str(char *a, char *b);
+// Debug dunction
+void	show_2d(char **input);
 
 #endif
