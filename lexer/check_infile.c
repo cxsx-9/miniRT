@@ -6,7 +6,7 @@
 /*   By: csantivi <csantivi@student.42bangkok.co    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/06/27 00:00:45 by csantivi          #+#    #+#             */
-/*   Updated: 2023/06/29 16:05:02 by csantivi         ###   ########.fr       */
+/*   Updated: 2023/06/29 21:58:19 by csantivi         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -24,17 +24,20 @@ char	*ignore_comment(char *line)
 	return (new);
 }
 
-int	check_object(char **data)
+int	check_object(char **data, int *cam)
 {
 	if (same_str(data[0], "C"))
+	{
+		*cam += 1;
 		return (check_camera(data));
+	}
 	else if (same_str(data[0], "sp"))
 		return (check_sphere(data));
 	else
 		return (error_unknow_var(data[0]));
 }
 
-int	check_line(char *line)
+int	check_line(char *line, int *cam)
 {
 	char	**data;
 	int		error_status;
@@ -43,7 +46,7 @@ int	check_line(char *line)
 		line = ignore_comment(line);
 	data = ft_split_white(line);
 	if (data && data[0])
-		error_status = check_object(data);
+		error_status = check_object(data, cam);
 	free_2d(data);
 	return (error_status);
 }

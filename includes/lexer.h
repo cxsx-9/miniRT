@@ -6,7 +6,7 @@
 /*   By: csantivi <csantivi@student.42bangkok.co    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/06/26 16:32:18 by csantivi          #+#    #+#             */
-/*   Updated: 2023/06/29 16:41:09 by csantivi         ###   ########.fr       */
+/*   Updated: 2023/06/29 21:55:44 by csantivi         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -31,7 +31,7 @@ int		good_coordinate(char **input, int unit_vect);
 int     check_camera(char **data);
 int 	check_sphere(char **data);
 
-int		check_line(char *line);
+int		check_line(char *line, int *cam);
 int		check_all(char *name);
 
 int     get_coordinate(char **input, t_vect *pos);
@@ -47,6 +47,7 @@ void	get_sphere(char **data, t_minirt *minirt);
 
 int 	error_unknow_var(char *str);
 void	error_line(char *name, int line);
+int 	error_camera(char *name);
 
 int	    is_inside(char c, char *set);
 int	    args_count(char **str);
