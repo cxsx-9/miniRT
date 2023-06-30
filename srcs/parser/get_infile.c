@@ -3,14 +3,14 @@
 /*                                                        :::      ::::::::   */
 /*   get_infile.c                                       :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: csantivi <csantivi@student.42bangkok.co    +#+  +:+       +#+        */
+/*   By: tkraikua <tkraikua@student.42.th>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/06/28 15:27:12 by csantivi          #+#    #+#             */
-/*   Updated: 2023/06/29 16:41:19 by csantivi         ###   ########.fr       */
+/*   Updated: 2023/06/29 22:16:14 by tkraikua         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
-#include "miniRT.h"
+#include "minirt.h"
 
 void	get_object(char **data, t_minirt *minirt)
 {

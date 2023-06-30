@@ -1,30 +1,18 @@
 /* ************************************************************************** */
 /*                                                                            */
 /*                                                        :::      ::::::::   */
-/*   free.c                                             :+:      :+:    :+:   */
+/*   utils.c                                            :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: csantivi <csantivi@student.42bangkok.co    +#+  +:+       +#+        */
+/*   By: tkraikua <tkraikua@student.42.th>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
-/*   Created: 2023/06/26 23:56:52 by csantivi          #+#    #+#             */
-/*   Updated: 2023/06/28 00:29:59 by csantivi         ###   ########.fr       */
+/*   Created: 2023/06/26 00:56:24 by tkraikua          #+#    #+#             */
+/*   Updated: 2023/06/26 21:17:43 by tkraikua         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
-#include "miniRT.h"
+#include <math.h>
 
-void	free_2d(char **data)
+double to_radian(double degree)
 {
-	int	i;
-
-	i = 0;
-	if (!data)
-		return ;
-	while (data[i])
-	{
-		free(data[i]);
-		data[i] = NULL;
-		i++;
-	}
-	free(data);
-	data = NULL;
+	return (degree * M_PI / 180);
 }

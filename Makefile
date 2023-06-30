@@ -1,33 +1,36 @@
 NAME = miniRT
 
 SRC =	srcs/main.c		\
-		srcs/color.c	\
-		srcs/vector.c	\
-		srcs/event.c	\
-		srcs/init.c		\
-		srcs/put_pixel.c	\
-		srcs/camera.c		\
-		srcs/utils.c		\
-		lexer/error_message.c	\
-		lexer/check_file.c		\
-		lexer/check_infile.c	\
-		lexer/check_object.c	\
-		lexer/get_infile.c		\
-		lexer/get_variable.c	\
-		lexer/get_object.c		\
-		lexer/good_number.c		\
-		lexer/good_variable.c	\
-		lexer/get_next_line.c	\
-		lexer/get_next_line_utils.c	\
-		lexer/ft_split_white.c	\
-		lexer/ft_atof.c			\
-		lexer/lexer_until.c		\
-		lexer/objs_manager.c	\
-		lexer/free.c
+		srcs/struct/camera.c		\
+		srcs/struct/color.c			\
+		srcs/struct/init.c			\
+		srcs/rendering/render.c		\
+		srcs/handler/event.c		\
+		srcs/vector/vector.c		\
+		srcs/utils/utils.c			\
+		srcs/utils/put_pixel.c		\
+		srcs/parser/error_message_1.c	\
+		srcs/parser/error_message_2.c	\
+		srcs/parser/check_file.c		\
+		srcs/parser/check_infile.c	\
+		srcs/parser/check_object_1.c	\
+		srcs/parser/check_object_2.c	\
+		srcs/parser/get_infile.c		\
+		srcs/parser/get_variable.c	\
+		srcs/parser/get_object.c		\
+		srcs/parser/good_number.c		\
+		srcs/parser/good_variable.c	\
+		srcs/parser/get_next_line.c	\
+		srcs/parser/get_next_line_utils.c	\
+		srcs/parser/ft_split_white.c	\
+		srcs/parser/ft_atof.c			\
+		srcs/parser/parser_until.c		\
+		srcs/parser/objs_manager.c	\
+		srcs/parser/free.c
 
 OBJ = $(SRC:.c=.o)
 
-CFLAG = -g -fsanitize=address# -Wall -Wextra -Werror
+CFLAG = #-g -fsanitize=address # -Wall -Wextra -Werror
 CC = cc
 
 MLX = $(MLXDIR)libmlx.a

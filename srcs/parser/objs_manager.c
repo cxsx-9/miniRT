@@ -6,11 +6,21 @@
 /*   By: csantivi <csantivi@student.42bangkok.co    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/06/28 16:53:17 by csantivi          #+#    #+#             */
-/*   Updated: 2023/06/29 00:54:49 by csantivi         ###   ########.fr       */
+/*   Updated: 2023/06/30 22:40:52 by csantivi         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
-#include "miniRT.h"
+#include "minirt.h"
+
+void	init_object_count(t_obj_count *counter)
+{
+	counter->camera = 0;
+	counter->ambient = 0;
+	counter->light = 0;
+	counter->sphere = 0;
+	counter->plane = 0;
+	counter->cylinder = 0;
+}
 
 t_obj	*lst_objs_last(t_obj *objs)
 {

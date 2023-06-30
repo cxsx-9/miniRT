@@ -3,14 +3,14 @@
 /*                                                        :::      ::::::::   */
 /*   get_object.c                                       :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: csantivi <csantivi@student.42bangkok.co    +#+  +:+       +#+        */
+/*   By: tkraikua <tkraikua@student.42.th>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/06/29 01:06:41 by csantivi          #+#    #+#             */
-/*   Updated: 2023/06/29 01:13:46 by csantivi         ###   ########.fr       */
+/*   Updated: 2023/06/29 22:31:03 by tkraikua         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
-#include "miniRT.h"
+#include "minirt.h"
 
 void	get_camera(char **data, t_minirt *minirt)
 {
@@ -22,6 +22,7 @@ void	get_camera(char **data, t_minirt *minirt)
 	get_coordinate(ft_split(data[2], ','), &cam->rot);
 	get_double(data[3], &cam->fov);
 	cam->aspect_ratio = (double) WIN_WIDTH / (double) WIN_HEIGHT;
+	cam->ray = malloc(sizeof(t_ray) * WIN_HEIGHT * WIN_WIDTH);
 	calculate_ray(cam);
 	minirt->cam = cam;
 }

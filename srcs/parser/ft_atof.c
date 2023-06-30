@@ -3,14 +3,14 @@
 /*                                                        :::      ::::::::   */
 /*   ft_atof.c                                          :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: csantivi <csantivi@student.42bangkok.co    +#+  +:+       +#+        */
+/*   By: tkraikua <tkraikua@student.42.th>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/06/28 15:51:35 by csantivi          #+#    #+#             */
-/*   Updated: 2023/06/29 01:59:01 by csantivi         ###   ########.fr       */
+/*   Updated: 2023/06/29 22:16:09 by tkraikua         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
-#include "miniRT.h"
+#include "minirt.h"
 
 double	ft_atof(char *str)
 {

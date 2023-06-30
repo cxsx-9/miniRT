@@ -6,7 +6,7 @@
 /*   By: tkraikua <tkraikua@student.42.th>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/06/09 13:44:11 by tkraikua          #+#    #+#             */
-/*   Updated: 2023/06/24 01:06:18 by tkraikua         ###   ########.fr       */
+/*   Updated: 2023/06/27 12:41:05 by tkraikua         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -17,19 +17,6 @@
 # include "color.h"
 
 # include "camera.h"
-
-typedef struct s_al
-{
-	double	r;			// ambient lighting ratio in range [0.0,1.0]
-	t_color	color;
-}	t_al;
-
-typedef struct s_light
-{
-	t_vect		center;
-	double		b;		// the light brightness ratio in range [0.0,1.0]
-	t_color		color;
-}	t_light;
 
 typedef enum	e_obj_id
 {

@@ -1,18 +1,24 @@
 /* ************************************************************************** */
 /*                                                                            */
 /*                                                        :::      ::::::::   */
-/*   utils.c                                            :+:      :+:    :+:   */
+/*   error_message_2.c                                  :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: tkraikua <tkraikua@student.42.th>          +#+  +:+       +#+        */
+/*   By: csantivi <csantivi@student.42bangkok.co    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
-/*   Created: 2023/06/26 00:56:24 by tkraikua          #+#    #+#             */
-/*   Updated: 2023/06/26 00:57:16 by tkraikua         ###   ########.fr       */
+/*   Created: 2023/06/30 23:11:18 by csantivi          #+#    #+#             */
+/*   Updated: 2023/06/30 23:29:00 by csantivi         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
-#include <math.h>
+#include "minirt.h"
 
-double to_radian(double degree)
+int	error_args_count(char **data, int expect_num)
 {
-	return (degree * M_PI / 180);
+	if (args_count(data) != expect_num)
+	{
+		ft_putstr_fd(": Wrong number of args, it should be ", 2);
+		ft_putnbr_fd(expect_num, 2);
+		return (0);
+	}
+	return (1);
 }

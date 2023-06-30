@@ -6,11 +6,12 @@
 /*   By: csantivi <csantivi@student.42bangkok.co    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/06/25 13:44:29 by csantivi          #+#    #+#             */
-/*   Updated: 2023/06/29 22:02:16 by csantivi         ###   ########.fr       */
+/*   Updated: 2023/07/01 00:15:54 by csantivi         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
-#include "miniRT.h"
+#include "minirt.h"
+#include "get_next_line.h"
 
 int	lastword(char *name)
 {
@@ -62,39 +63,41 @@ int	check_access(char *name)
 
 int	check_input(char *name, int fd)
 {
-	char	*line;
-	int		i;
-	int		error_status;
-	int		cam;
+	char		*line;
+	int			i;
+	int			status;
+	t_obj_count	counter;
 
 	i = 0;
-	error_status = 1;
+	status = 1;
+	init_object_count(&counter);
 	line = get_next_line(fd);
-	cam = 0;
-	while (line != NULL && error_status && i++ != -1)
+	while (line != NULL && status && i++ != -1)
 	{
 		if (line[0] != 0)
-			error_status = check_line(line, &cam);
+			status = check_line(line, &counter);
 		free(line);
 		line = get_next_line(fd);
 	}
-	if (error_status == 0)
-		error_line(name, i);
-	if (cam == 0)
-		error_status = error_camera(name);
 	free(line);
-	close(fd);
-	return (error_status);
+	if (status == 0)
+		error_line(name, i);
+	else
+		status = error_object_number(name, &counter);
+	return (status);
 }
 
 int	check_all(char *name)
 {
 	int	fd;
+	int	status;
 
+	status = 1;
 	if (!check_file_name(name) || !check_access(name))
 		return (0);
 	fd = open(name, O_RDONLY);
 	if (!check_input(name, fd))
-		return (0);
-	return (1);
+		status = 0;
+	close(fd);
+	return (status);
 }

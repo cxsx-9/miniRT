@@ -1,30 +1,39 @@
 /* ************************************************************************** */
 /*                                                                            */
 /*                                                        :::      ::::::::   */
-/*   put_pixel.c                                        :+:      :+:    :+:   */
+/*   scene.h                                            :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
 /*   By: tkraikua <tkraikua@student.42.th>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
-/*   Created: 2023/06/22 11:16:47 by tkraikua          #+#    #+#             */
-/*   Updated: 2023/06/22 11:19:38 by tkraikua         ###   ########.fr       */
+/*   Created: 2023/06/27 12:39:32 by tkraikua          #+#    #+#             */
+/*   Updated: 2023/06/28 11:13:31 by tkraikua         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
-#include "minirt.h"
+#ifndef SCENE_H
+# define SCENE_H
 
-void	img_pix_put(t_img *img, int x, int y, int color)
+# include "object.h"
+
+typedef struct s_al
 {
-	char	*pixel;
-	int		i;
+	double	r;			// ambient lighting ratio in range [0.0,1.0]
+	t_color	color;
+}	t_al;
 
-	i = img->bpp - 8;
-	pixel = img->addr + (y * img->line_len + x * (img->bpp / 8));
-	while (i >= 0)
-	{
-		if (img->endian != 0)
-			*pixel++ = (color >> i) * 0xFF;
-		else
-			*pixel++ = (color >> (img->bpp - 8 - i)) & 0xFF;
-		i -= 8;
-	}
-}
+typedef struct s_light
+{
+	t_vect		center;
+	double		b;		// the light brightness ratio in range [0.0,1.0]
+	t_color		color;
+}	t_light;
+
+typedef	struct s_scene
+{
+	t_al	*ambient_light;
+	t_light	*lights;
+	t_obj	*objs;
+};
+
+
+#endif

@@ -28,12 +28,11 @@
 
 # include "minirt_mlx.h"
 
-# include "control.h"
-
 # include "camera.h"
 # include "vector.h"
 # include "object.h"
 # include "ray.h"
+
 # include "get_next_line.h"
 
 typedef struct		s_minirt
@@ -46,6 +45,8 @@ typedef struct		s_minirt
 }					t_minirt;
 
 t_minirt	*init_minirt();
-# include "lexer.h"
+
+# include "control.h"
+# include "parser.h"
 
 #endif

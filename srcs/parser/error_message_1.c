@@ -6,11 +6,11 @@
 /*   By: csantivi <csantivi@student.42bangkok.co    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/06/29 16:03:35 by csantivi          #+#    #+#             */
-/*   Updated: 2023/06/29 22:03:49 by csantivi         ###   ########.fr       */
+/*   Updated: 2023/06/30 22:55:57 by csantivi         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
-#include "miniRT.h"
+#include "minirt.h"
 
 int	error_unknow_var(char *str)
 {
@@ -28,10 +28,35 @@ void	error_line(char *name, int line)
 	ft_putstr_fd("]\n", 2);
 }
 
-int	error_camera(char *name)
+int	error_camera_number(t_obj_count *counter)
 {
-	ft_putstr_fd(": No cameara at [", 2);
-	write(2, name, ft_strlen(name));
-	ft_putstr_fd("]\n", 2);
-	return (0);
+	if (counter->camera == 0)
+		ft_putstr_fd(": No Cameara ", 2);
+	else if (counter->camera > 1)
+		ft_putstr_fd(": Too much Cameara ", 2);
+	if (counter->camera != 1)
+		return (0);
+	return (1);
+}
+
+int	error_ambient_number(t_obj_count *counter)
+{
+	if (counter->ambient > 1)
+	{
+		ft_putstr_fd(": Too much Ambient Light ", 2);
+		return (0);
+	}
+	return (1);
+}
+
+int	error_object_number(char *name, t_obj_count *counter)
+{
+	if (!error_camera_number(counter) || !error_ambient_number(counter))
+	{
+		ft_putstr_fd("at [", 2);
+		write(2, name, ft_strlen(name));
+		ft_putstr_fd("]\n", 2);
+		return (0);
+	}
+	return (1);
 }

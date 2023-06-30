@@ -3,14 +3,14 @@
 /*                                                        :::      ::::::::   */
 /*   ft_split_white.c                                   :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: csantivi <csantivi@student.42bangkok.co    +#+  +:+       +#+        */
+/*   By: tkraikua <tkraikua@student.42.th>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/06/26 17:41:55 by csantivi          #+#    #+#             */
-/*   Updated: 2023/06/29 00:54:17 by csantivi         ###   ########.fr       */
+/*   Updated: 2023/06/29 22:16:12 by tkraikua         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
-#include "miniRT.h"
+#include "minirt.h"
 
 int	is_white_space(char c)
 {

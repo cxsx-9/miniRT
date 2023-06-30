@@ -3,14 +3,14 @@
 /*                                                        :::      ::::::::   */
 /*   get_variable.c                                     :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: csantivi <csantivi@student.42bangkok.co    +#+  +:+       +#+        */
+/*   By: tkraikua <tkraikua@student.42.th>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/06/29 01:10:32 by csantivi          #+#    #+#             */
-/*   Updated: 2023/06/29 01:14:39 by csantivi         ###   ########.fr       */
+/*   Updated: 2023/06/29 22:16:23 by tkraikua         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
-#include "miniRT.h"
+#include "minirt.h"
 
 int	get_coordinate(char **input, t_vect *pos)
 {

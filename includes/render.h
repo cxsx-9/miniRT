@@ -1,37 +1,20 @@
 /* ************************************************************************** */
 /*                                                                            */
 /*                                                        :::      ::::::::   */
-/*   event.c                                            :+:      :+:    :+:   */
+/*   render.h                                           :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
 /*   By: tkraikua <tkraikua@student.42.th>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
-/*   Created: 2023/06/18 15:24:09 by tkraikua          #+#    #+#             */
-/*   Updated: 2023/06/18 15:26:22 by tkraikua         ###   ########.fr       */
+/*   Created: 2023/06/27 12:48:34 by tkraikua          #+#    #+#             */
+/*   Updated: 2023/06/27 16:30:46 by tkraikua         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
-#include "minirt.h"
+#ifndef RENDER_H
+# define RENDER_H
 
-int close_event( void )
-{
-	exit(0);
-}
+# include "minirt.h"
 
-int mouse_event(int button, int x, int y, void *param)
-{
-	button = (int) button;
-	x = (int) x;
-	y = (int) y;
-	param = (void *) param;
-    printf("%d\n", button);
-	return (0);
-}
+void draw(t_minirt *minirt);
 
-int	key_event(int keycode, void *param)
-{
-	keycode = (int) keycode;
-	param = (void *) param;
-	if (keycode == KEY_ESC)
-		exit(0);
-	return (0);
-}
+#endif
