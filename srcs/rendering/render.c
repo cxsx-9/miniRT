@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   render.c                                           :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: tkraikua <tkraikua@student.42.th>          +#+  +:+       +#+        */
+/*   By: csantivi <csantivi@student.42bangkok.co    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/06/27 12:47:35 by tkraikua          #+#    #+#             */
-/*   Updated: 2023/06/29 22:17:23 by tkraikua         ###   ########.fr       */
+/*   Updated: 2023/07/01 11:41:07 by csantivi         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -74,7 +74,6 @@ int	ray_trace(t_minirt *minirt, t_ray ray)
 
 		// check discriminant
 		double discriminant = b * b - 4.0 * a * c;
-		// printf("Im here\n");
 		if (discriminant < 0){
 			objs = objs->next;
 			continue;

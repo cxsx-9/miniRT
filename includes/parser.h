@@ -6,7 +6,7 @@
 /*   By: csantivi <csantivi@student.42bangkok.co    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/06/26 16:32:18 by csantivi          #+#    #+#             */
-/*   Updated: 2023/07/01 00:14:58 by csantivi         ###   ########.fr       */
+/*   Updated: 2023/07/01 20:29:52 by csantivi         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -21,9 +21,8 @@ double	ft_atof(char *str);
 int		good_integer(char *num, int print);
 int     good_positive_int(char *num);
 int		good_double(char *num, int print);
-int     good_positive_double(char *num);
-int     good_ratio(char *num);
-int     good_size(char *num, char *type, int print);
+int     good_positive_double(char *num, int max);
+int     good_size(char *num, char *type);
 int 	good_unit(char **unit_vect);
 int     good_color(char **input);
 int		good_coordinate(char **input, int unit_vect);
@@ -47,7 +46,7 @@ int     check_cylinder(char **data, t_obj_count *counter);
 
 void	init_object_count(t_obj_count *counter);
 t_obj	*lst_objs_last(t_obj *objs);
-void	lst_objs_addback(t_obj **objs, t_obj *new);
+void	lst_objs_addback(t_obj **objs, t_obj *new_obj);
 
 int		check_line(char *line, t_obj_count *counter);
 int		check_all(char *name);

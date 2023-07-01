@@ -6,26 +6,11 @@
 /*   By: csantivi <csantivi@student.42bangkok.co    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/06/28 15:34:02 by csantivi          #+#    #+#             */
-/*   Updated: 2023/07/01 00:07:37 by csantivi         ###   ########.fr       */
+/*   Updated: 2023/07/01 20:35:02 by csantivi         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "minirt.h"
-
-int	good_ratio(char *num)
-{
-	double	ratio;
-
-	if (!good_double(num, 1))
-		return (0);
-	ratio = ft_atof(num);
-	if (ratio > 1 || ratio < 0)
-	{
-		ft_putstr_fd(": The ratio should be in the range [0,1]", 2);
-		return (0);
-	}
-	return (1);
-}
 
 int	good_unit(char **unit_vect)
 {
@@ -51,15 +36,29 @@ int	good_unit(char **unit_vect)
 	return (1);
 }
 
-int	good_size(char *num, char *type, int print)
+int	good_size(char *num, char *type)
 {
-	if (!good_double(num, print))
+	int	max;
+
+	max = INT16_MAX;
+	if (!good_double(num, 1))
 		return (0);
-	if (!good_positive_double(num))
+	if (same_str(type, "FOV"))
+		max = 180;
+	else if (same_str(type, "Ratio"))
+		max = 1;
+	if (!good_positive_double(num, max))
 	{
 		ft_putstr_fd(": ", 2);
 		write(2, type, ft_strlen(type));
-		ft_putstr_fd(" should be positive", 2);
+		if (max == 1 || max == 180)
+		{
+			ft_putstr_fd(" should be in the range [0,", 2);
+			ft_putnbr_fd(max, 2);
+			ft_putstr_fd("]", 2);
+		}
+		else
+			ft_putstr_fd(" should be positive", 2);
 		return (0);
 	}
 	return (1);
