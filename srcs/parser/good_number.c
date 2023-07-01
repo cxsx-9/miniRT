@@ -6,7 +6,7 @@
 /*   By: csantivi <csantivi@student.42bangkok.co    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/06/29 15:49:56 by csantivi          #+#    #+#             */
-/*   Updated: 2023/06/30 20:55:39 by csantivi         ###   ########.fr       */
+/*   Updated: 2023/07/01 11:26:01 by csantivi         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -27,7 +27,7 @@ int	good_positive_double(char *num)
 	double	n;
 
 	n = ft_atof(num);
-	if (n >= 0)
+	if (n > 0)
 		return (1);
 	return (0);
 }
