@@ -6,7 +6,7 @@
 /*   By: tkraikua <tkraikua@student.42.th>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/06/22 11:17:19 by tkraikua          #+#    #+#             */
-/*   Updated: 2023/06/28 11:12:06 by tkraikua         ###   ########.fr       */
+/*   Updated: 2023/07/02 01:16:53 by tkraikua         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -66,6 +66,8 @@
 # define PropertyChangeMask (1L<<22)
 # define ColormapChangeMask (1L<<23)
 # define OwnerGrabButtonMask (1L<<24)
+
+# include "control.h"
 
 typedef struct s_img
 {

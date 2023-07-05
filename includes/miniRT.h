@@ -21,32 +21,13 @@
 # include <string.h>
 # include <math.h>
 
+# include "../libft/libft.h"
+# include "../mlx/mlx.h"
+
 # include "minirt_define.h"
-
-# include "libft.h"
-# include "mlx.h"
-
 # include "minirt_mlx.h"
+# include "minirt_struct.h"
 
-# include "camera.h"
-# include "vector.h"
-# include "object.h"
-# include "ray.h"
-
-# include "get_next_line.h"
-
-typedef struct		s_minirt
-{
-	void			*mlx;
-	void			*win;
-	t_img			img;
-	t_camera		*cam;
-	t_obj			*objs;
-}					t_minirt;
-
-t_minirt	*init_minirt();
-
-# include "control.h"
 # include "parser.h"
 
 #endif

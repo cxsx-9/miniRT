@@ -6,13 +6,15 @@
 /*   By: csantivi <csantivi@student.42bangkok.co    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/06/26 16:32:18 by csantivi          #+#    #+#             */
-/*   Updated: 2023/07/01 20:29:52 by csantivi         ###   ########.fr       */
+/*   Updated: 2023/07/05 22:49:57 by csantivi         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
-#ifndef LEXER_H
-# define LEXER_H
+#ifndef PARSER_H
+# define PARSER_H
+
 # include "minirt.h"
+# include "get_next_line.h"
 
 char	**ft_split_white(char *s);
 void	free_2d(char **data);
@@ -52,7 +54,7 @@ int		check_line(char *line, t_obj_count *counter);
 int		check_all(char *name);
 
 int     get_coordinate(char **input, t_vect *pos);
-int 	get_color_input(char **input, t_color *color);
+int 	get_color_input(char **input, t_vect *color);
 int 	get_integer(char *num, int *des);
 int     get_double(char *num, double *des);
 
@@ -60,7 +62,12 @@ void	get_object(char **data, t_minirt *minirt);
 void	get_all(char *name, t_minirt *minirt);
 
 void	get_camera(char **data, t_minirt *minirt);
+void	get_ambient(char **data, t_minirt *minirt);
+void	get_light(char **data, t_minirt *minirt);
+
 void	get_sphere(char **data, t_minirt *minirt);
+void	get_plane(char **data, t_minirt *minirt);
+void	get_cylinder(char **data, t_minirt *minirt);
 
 int 	error_unknow_var(char *str);
 void	error_line(char *name, int line);

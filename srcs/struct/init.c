@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   init.c                                             :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: tkraikua <tkraikua@student.42.th>          +#+  +:+       +#+        */
+/*   By: csantivi <csantivi@student.42bangkok.co    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/06/21 20:55:02 by tkraikua          #+#    #+#             */
-/*   Updated: 2023/06/29 23:22:16 by tkraikua         ###   ########.fr       */
+/*   Updated: 2023/07/05 22:19:59 by csantivi         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -24,6 +24,6 @@ t_minirt	*init_minirt()
 			minirt->img.img, &minirt->img.bpp,
 			&minirt->img.line_len, &minirt->img.endian);
 	minirt->cam = NULL;
-	minirt->objs = NULL;
+	minirt->scene = NULL;
 	return (minirt);
 }

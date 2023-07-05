@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   get_infile.c                                       :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: tkraikua <tkraikua@student.42.th>          +#+  +:+       +#+        */
+/*   By: csantivi <csantivi@student.42bangkok.co    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/06/28 15:27:12 by csantivi          #+#    #+#             */
-/*   Updated: 2023/06/29 22:16:14 by tkraikua         ###   ########.fr       */
+/*   Updated: 2023/07/05 22:48:44 by csantivi         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -15,9 +15,17 @@
 void	get_object(char **data, t_minirt *minirt)
 {
 	if (same_str(data[0], "C"))
-		get_camera(data, minirt);
+		return (get_camera(data, minirt));
+	else if (same_str(data[0], "A"))
+		return (get_ambient(data, minirt));
+	else if (same_str(data[0], "L"))
+		return (get_light(data, minirt));
 	else if (same_str(data[0], "sp"))
-		get_sphere(data, minirt);
+		return (get_sphere(data, minirt));
+	else if (same_str(data[0], "pl"))
+		return (get_plane(data, minirt));
+	else if (same_str(data[0], "cy"))
+		return (get_cylinder(data, minirt));
 	free_2d(data);
 }
 
@@ -25,7 +33,10 @@ void	get_all(char *name, t_minirt *minirt)
 {
 	char	*line;
 	int		fd;
+	t_scene	*scene;
 
+	scene = malloc(sizeof(t_scene));
+	minirt->scene = scene;
 	fd = open(name, O_RDONLY);
 	line = get_next_line(fd);
 	while (line != NULL)

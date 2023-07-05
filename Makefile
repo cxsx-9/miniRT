@@ -18,13 +18,14 @@ SRC =	srcs/main.c		\
 		srcs/parser/get_infile.c		\
 		srcs/parser/get_variable.c	\
 		srcs/parser/get_object.c		\
+		srcs/parser/get_light.c		\
 		srcs/parser/good_number.c		\
 		srcs/parser/good_variable.c	\
 		srcs/parser/get_next_line.c	\
 		srcs/parser/get_next_line_utils.c	\
 		srcs/parser/ft_split_white.c	\
 		srcs/parser/ft_atof.c			\
-		srcs/parser/parser_until.c		\
+		srcs/parser/parser_util.c		\
 		srcs/parser/objs_manager.c	\
 		srcs/parser/free.c
 

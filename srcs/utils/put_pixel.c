@@ -6,11 +6,11 @@
 /*   By: tkraikua <tkraikua@student.42.th>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/06/22 11:16:47 by tkraikua          #+#    #+#             */
-/*   Updated: 2023/06/28 11:37:35 by tkraikua         ###   ########.fr       */
+/*   Updated: 2023/07/02 01:18:03 by tkraikua         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
-#include "minirt.h"
+#include "minirt_mlx.h"
 
 void	img_pix_put(t_img *img, int x, int y, int color)
 {

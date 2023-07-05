@@ -6,13 +6,15 @@
 /*   By: tkraikua <tkraikua@student.42.th>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/06/26 00:57:26 by tkraikua          #+#    #+#             */
-/*   Updated: 2023/06/26 22:05:00 by tkraikua         ###   ########.fr       */
+/*   Updated: 2023/07/02 01:07:22 by tkraikua         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #ifndef UTILS_H
 
 # define UTILS_H
+
+# include <math.h>
 
 double to_radian(double degree);
 

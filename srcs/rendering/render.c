@@ -6,7 +6,7 @@
 /*   By: csantivi <csantivi@student.42bangkok.co    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/06/27 12:47:35 by tkraikua          #+#    #+#             */
-/*   Updated: 2023/07/01 11:41:07 by csantivi         ###   ########.fr       */
+/*   Updated: 2023/07/05 22:17:00 by csantivi         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -58,7 +58,7 @@
 
 int	ray_trace(t_minirt *minirt, t_ray ray)
 {
-	t_obj *objs = minirt->objs;
+	t_obj *objs = minirt->scene->objs;
 	t_sphere *closest_sphere = NULL;
 	double hit_distance = DBL_MAX;
 
@@ -74,6 +74,7 @@ int	ray_trace(t_minirt *minirt, t_ray ray)
 
 		// check discriminant
 		double discriminant = b * b - 4.0 * a * c;
+		// printf("Im here\n");
 		if (discriminant < 0){
 			objs = objs->next;
 			continue;
@@ -109,10 +110,10 @@ int	ray_trace(t_minirt *minirt, t_ray ray)
 	t_vect light_dir = normalize(vect(-1, -1, -1));
 
 	double d = MAX(dot_product(normal, multi_vect(light_dir, -1)), 0.0); // = cos(angle)
-	t_color color;
-	color.r = closest_sphere->color.r * d;
-	color.g = closest_sphere->color.g * d;
-	color.b = closest_sphere->color.b * d;
+	t_vect color;
+	color.x = closest_sphere->color.x * d;
+	color.y = closest_sphere->color.y * d;
+	color.z = closest_sphere->color.z * d;
 	return (get_color(color));
 }
 

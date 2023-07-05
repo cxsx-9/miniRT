@@ -6,12 +6,13 @@
 /*   By: csantivi <csantivi@student.42bangkok.co    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/06/18 15:24:09 by tkraikua          #+#    #+#             */
-/*   Updated: 2023/06/30 11:53:37 by csantivi         ###   ########.fr       */
+/*   Updated: 2023/07/05 22:20:30 by csantivi         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "minirt.h"
 #include "render.h"
+#include "camera.h"
 
 int i = 0;
 
@@ -24,12 +25,9 @@ int close_event(void *param )
 
 	minirt = (t_minirt*) param;
 	cam = minirt->cam;
-	objs = minirt->objs;
-	if (cam)
-	{
-		free(cam->ray);
-		free(cam);
-	}
+	objs = minirt->scene->objs;
+	free(cam->ray);
+	free(cam);
 	while (objs)
 	{
 		tmp_obj = objs->next;
@@ -83,17 +81,25 @@ int handle_keypress(int keycode, void *param)
 	else if (keycode == RIGHT_SQUARE_BRACKETS)
 		minirt->cam->fov += 1;
 	else if (keycode == KEY_A)
-		minirt->cam->pos.x -= 0.5;
+		move_left(minirt->cam, 1);
 	else if (keycode == KEY_S)
-		minirt->cam->pos.z += 0.5;
+		move_backward(minirt->cam, 1);
 	else if (keycode == KEY_D)
-		minirt->cam->pos.x += 0.5;
+		move_right(minirt->cam, 1);
 	else if (keycode == KEY_W)
-		minirt->cam->pos.z -= 0.5;
+		move_forward(minirt->cam, 1);
 	else if (keycode == KEY_Q)
-		minirt->cam->pos.y -= 0.5;
+		move_down(minirt->cam, 1);
 	else if (keycode == KEY_E)
-		minirt->cam->pos.y += 0.5;
+		move_up(minirt->cam, 1);
+	else if (keycode == LEFT_ARROW)
+		pitch_cw(minirt->cam, 0.02);
+	else if (keycode == RIGHT_ARROW)
+		pitch_ccw(minirt->cam, 0.02);
+	else if (keycode == UP_ARROW)
+		roll_cw(minirt->cam, 0.02);
+	else if (keycode == DOWN_ARROW)
+		roll_ccw(minirt->cam, 0.02);
 	return (0);
 }
 
@@ -110,10 +116,15 @@ int loop_event(void *param)
 	t_minirt *minirt;
 
 	minirt = (t_minirt*) param;
+	// minirt->cam->rot = normalize(minirt->cam->rot);
+	// minirt->cam->right = cross_product(vect(0, 1, 0), minirt->cam->rot);
+	// minirt->cam->up = cross_product(minirt->cam->rot, minirt->cam->right);
 	calculate_ray(minirt->cam);
 	draw(minirt);
 	// printf("%d\n", i++);
-	// printf("fov = %lf\n", minirt->camera->fov);
-	// printf("camera position = (%lf, %lf, %lf)\n", minirt->camera->pos.x, minirt->camera->pos.y, minirt->camera->pos.z);
+	// printf("fov = %lf\n", minirt->cam->fov);
+	printf("camera position = (%lf, %lf, %lf)\n", minirt->cam->pos.x, minirt->cam->pos.y, minirt->cam->pos.z);
+	printf("camera forward ->");
+	print_vect(minirt->cam->forward);
 	return (0);
 }

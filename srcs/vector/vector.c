@@ -6,11 +6,12 @@
 /*   By: tkraikua <tkraikua@student.42.th>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/06/12 20:51:32 by tkraikua          #+#    #+#             */
-/*   Updated: 2023/06/29 12:58:30 by tkraikua         ###   ########.fr       */
+/*   Updated: 2023/07/02 01:26:24 by tkraikua         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "minirt.h"
+#include "vector.h"
 
 t_vect	vect(double x, double y, double z)
 {
@@ -80,7 +81,7 @@ double	dist_vect(t_vect v)
 
 void	print_vect(t_vect v)
 {
-	printf("(%lf, %lf, %lf)", v.x, v.y, v.z);
+	printf("(%lf, %lf, %lf)\n", v.x, v.y, v.z);
 }
 
 /*

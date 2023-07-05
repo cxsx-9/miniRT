@@ -1,40 +1,32 @@
 /* ************************************************************************** */
 /*                                                                            */
 /*                                                        :::      ::::::::   */
-/*   scene.h                                            :+:      :+:    :+:   */
+/*   minirt_struct.h                                    :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
 /*   By: csantivi <csantivi@student.42bangkok.co    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
-/*   Created: 2023/06/27 12:39:32 by tkraikua          #+#    #+#             */
-/*   Updated: 2023/07/05 22:54:19 by csantivi         ###   ########.fr       */
+/*   Created: 2023/07/02 01:04:00 by tkraikua          #+#    #+#             */
+/*   Updated: 2023/07/05 22:16:02 by csantivi         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
-#ifndef SCENE_H
-# define SCENE_H
+#ifndef MINIRT_STRUCT_H
+# define MINIRT_STRUCT_H
 
-# include "../libft/libft.h"
-# include "object.h"
+# include "minirt_mlx.h"
+# include "camera.h"
+# include "scene.h"
 
-typedef struct s_al
+typedef struct		s_minirt
 {
-	double	r;			// ambient lighting ratio in range [0.0,1.0]
-	t_vect	color;
-}	t_al;
+	void			*mlx;
+	void			*win;
+	t_img			img;
+	t_camera		*cam;
+	t_scene			*scene;
+	// t_obj			*objs;
+}					t_minirt;
 
-typedef struct s_light
-{
-	t_vect		center;
-	double		b;		// the light brightness ratio in range [0.0,1.0]
-	t_vect		color;	
-}	t_light;
-
-typedef	struct s_scene
-{
-	t_al	*ambient_light;
-	t_light	*lights;
-	t_obj	*objs;
-}	t_scene;
-
+t_minirt	*init_minirt();
 
 #endif

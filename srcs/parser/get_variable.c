@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   get_variable.c                                     :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: tkraikua <tkraikua@student.42.th>          +#+  +:+       +#+        */
+/*   By: csantivi <csantivi@student.42bangkok.co    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/06/29 01:10:32 by csantivi          #+#    #+#             */
-/*   Updated: 2023/06/29 22:16:23 by tkraikua         ###   ########.fr       */
+/*   Updated: 2023/07/05 22:32:20 by csantivi         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -21,11 +21,11 @@ int	get_coordinate(char **input, t_vect *pos)
 	return (1);
 }
 
-int	get_color_input(char **input, t_color *color)
+int	get_color_input(char **input, t_vect *color)
 {
-	color->r = ft_atoi(input[0]) / 255.0;
-	color->g = ft_atoi(input[1]) / 255.0;
-	color->b = ft_atoi(input[2]) / 255.0;
+	color->x = ft_atoi(input[0]) / 255.0;
+	color->y = ft_atoi(input[1]) / 255.0;
+	color->z = ft_atoi(input[2]) / 255.0;
 	free_2d(input);
 	return (1);
 }
