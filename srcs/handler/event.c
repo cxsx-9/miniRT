@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   event.c                                            :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: csantivi <csantivi@student.42bangkok.co    +#+  +:+       +#+        */
+/*   By: tkraikua <tkraikua@student.42.th>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/06/18 15:24:09 by tkraikua          #+#    #+#             */
-/*   Updated: 2023/07/05 22:20:30 by csantivi         ###   ########.fr       */
+/*   Updated: 2023/07/08 23:48:59 by tkraikua         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -18,27 +18,31 @@ int i = 0;
 
 int close_event(void *param )
 {
-	t_minirt	*minirt;
-	t_camera	*cam;
-	t_obj		*objs;
-	t_obj		*tmp_obj;
+	t_minirt *minirt = (t_minirt*) param;
 
-	minirt = (t_minirt*) param;
-	cam = minirt->cam;
-	objs = minirt->scene->objs;
-	free(cam->ray);
-	free(cam);
-	while (objs)
+	if (minirt->cam != NULL)
 	{
-		tmp_obj = objs->next;
-		free(objs->content);
-		free(objs);
-		objs = tmp_obj;
+		if (minirt->cam->ray != NULL)
+			free(minirt->cam->ray);
+		free(minirt->cam);
 	}
-	// mlx_destroy_image(minirt->mlx, minirt->img.img);
-	// mlx_destroy_window(minirt->mlx, minirt->win);
-	// free(minirt->mlx);
-	free(minirt);
+	if (minirt->scene != NULL)
+	{
+		if (minirt->scene->ambient_light != NULL)
+			free(minirt->scene->ambient_light);
+		if (minirt->scene->lights != NULL)
+			free(minirt->scene->lights);
+		while (minirt->scene->objs != NULL)
+		{
+			free(minirt->scene->objs->content);
+			t_obj *tmp_obj = minirt->scene->objs->next;
+			free(minirt->scene->objs);
+			minirt->scene->objs = tmp_obj;
+		}
+		free(minirt->scene);
+	}
+	if (minirt != NULL)
+		free(minirt);
 	exit(0);
 	// return (0);
 }
@@ -123,8 +127,8 @@ int loop_event(void *param)
 	draw(minirt);
 	// printf("%d\n", i++);
 	// printf("fov = %lf\n", minirt->cam->fov);
-	printf("camera position = (%lf, %lf, %lf)\n", minirt->cam->pos.x, minirt->cam->pos.y, minirt->cam->pos.z);
-	printf("camera forward ->");
-	print_vect(minirt->cam->forward);
+	// printf("camera position = (%lf, %lf, %lf)\n", minirt->cam->pos.x, minirt->cam->pos.y, minirt->cam->pos.z);
+	// printf("camera forward ->");
+	// print_vect(minirt->cam->forward);
 	return (0);
 }

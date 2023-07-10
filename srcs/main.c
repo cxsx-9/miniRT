@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   main.c                                             :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: csantivi <csantivi@student.42bangkok.co    +#+  +:+       +#+        */
+/*   By: tkraikua <tkraikua@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/06/08 13:42:53 by tkraikua          #+#    #+#             */
-/*   Updated: 2023/07/05 22:16:39 by csantivi         ###   ########.fr       */
+/*   Updated: 2023/07/10 13:10:03 by tkraikua         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -60,7 +60,8 @@
 
 // 	objs->next = tmp_obj;
 	
-// 	minirt->objs = objs;
+// 	// minirt->objs = objs;
+// 	minirt->scene->objs = objs;
 // }
 
 int main( int ac, char **av )
@@ -81,6 +82,7 @@ int main( int ac, char **av )
 	minirt->cam->forward = normalize(minirt->cam->forward);
 	minirt->cam->right = cross_product(minirt->cam->forward, vect(0, 1, 0));
 	minirt->cam->up = cross_product(minirt->cam->right, minirt->cam->forward);
+
 
 	// minirt->cam->rot = vect(0, 1, 0);
 	// minirt->cam->right = vect(1, 0, 0);

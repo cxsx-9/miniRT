@@ -6,7 +6,7 @@
 /*   By: csantivi <csantivi@student.42bangkok.co    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/07/02 01:04:00 by tkraikua          #+#    #+#             */
-/*   Updated: 2023/07/05 22:16:02 by csantivi         ###   ########.fr       */
+/*   Updated: 2023/07/10 12:49:19 by csantivi         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -24,7 +24,6 @@ typedef struct		s_minirt
 	t_img			img;
 	t_camera		*cam;
 	t_scene			*scene;
-	// t_obj			*objs;
 }					t_minirt;
 
 t_minirt	*init_minirt();
