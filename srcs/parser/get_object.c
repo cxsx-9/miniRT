@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   get_object.c                                       :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: tkraikua <tkraikua@student.42.fr>          +#+  +:+       +#+        */
+/*   By: csantivi <csantivi@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/06/29 01:06:41 by csantivi          #+#    #+#             */
-/*   Updated: 2023/07/10 13:09:25 by tkraikua         ###   ########.fr       */
+/*   Updated: 2023/07/10 22:29:05 by csantivi         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -32,7 +32,7 @@ void	get_sphere(char **data, t_minirt *minirt)
 void	get_plane(char **data, t_minirt *minirt)
 {
 	t_obj		*objs;
-	t_plane	*plane;
+	t_plane		*plane;
 
 	objs = malloc(sizeof(t_obj));
 	plane = malloc(sizeof(t_plane));

@@ -3,77 +3,16 @@
 /*                                                        :::      ::::::::   */
 /*   render.c                                           :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: csantivi <csantivi@student.42bangkok.co    +#+  +:+       +#+        */
+/*   By: csantivi <csantivi@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/06/27 12:47:35 by tkraikua          #+#    #+#             */
-/*   Updated: 2023/07/10 16:20:07 by csantivi         ###   ########.fr       */
+/*   Updated: 2023/07/11 01:02:04 by csantivi         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 # include "minirt.h"
 # include "render.h"
 # include "color.h"
-
-// t_vect	ray_trace(t_minirt *minirt, t_ray ray)
-// {
-// 	t_obj *objs = minirt->objs;
-// 	t_sphere *closest_sphere = NULL;
-// 	double hit_distance = DBL_MAX;
-
-// 	while (objs != NULL)
-// 	{
-// 		t_sphere* sphere = (t_sphere*) objs->content;
-// 		// ray.orig = sub_vect(ray.orig, sphere->center);
-// 		t_vect origin = sub_vect(ray.orig, sphere->center);
-
-// 		double a = dot_product(ray.dir, ray.dir);
-// 		double b = 2 * dot_product(origin, ray.dir);
-// 		double c = dot_product(origin, origin) - sphere->r * sphere->r;
-
-// 		// check discriminant
-// 		double discriminant = b * b - 4.0 * a * c;
-// 		// printf("Im here\n");
-// 		if (discriminant < 0){
-// 			objs = objs->next;
-// 			continue;
-// 		}
-
-// 		// (-b +- sqrt(discriminant)) / (2.0 * a)
-// 		double t0 = (-b + sqrt(discriminant)) / (2.0 * a);
-// 		double closestT = (-b - sqrt(discriminant)) / (2.0 * a);
-// 		if (t0 < 0 && closestT < 0)
-// 		{
-// 			objs = objs->next;
-// 			continue;
-// 		}
-// 		// printf("%lf\n", closestT);
-// 		if (closestT < hit_distance)
-// 		{
-// 			hit_distance = closestT;
-// 			closest_sphere = sphere;
-// 			objs = objs->next;
-// 			continue;
-// 		}
-// 		objs = objs->next;
-// 	}
-
-// 	if (closest_sphere == NULL)
-// 		return (color(135, 206, 235));
-
-// 	t_vect origin = sub_vect(ray.orig, closest_sphere->center);
-// 	t_vect hit_point = add_vect(origin, multi_vect(ray.dir, hit_distance));
-
-// 	t_vect normal = normalize(hit_point);
-
-// 	t_vect light_dir = normalize(vect(-1, -1, -1));
-
-// 	double d = MAX(dot_product(normal, multi_vect(light_dir, -1)), 0.0); // = cos(angle)
-// 	t_vect color;
-// 	color.x = closest_sphere->color.x * d;
-// 	color.y = closest_sphere->color.y * d;
-// 	color.z = closest_sphere->color.z * d;
-// 	return (color);
-// }
 
 t_payload	miss(t_ray ray)
 {
@@ -162,7 +101,7 @@ t_vect	per_pixel(t_camera *camera, t_scene *scene, int x, int y)
 	ray = camera->ray[x + y * WIN_WIDTH];
 	double multiplier = 1.0;
 	
-	int bounces = 3;
+	int bounces = 10;
 	for (int i = 0; i < bounces; i++)
 	{
 		payload = ray_trace(camera, scene, ray);

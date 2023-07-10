@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   check_file.c                                       :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: tkraikua <tkraikua@student.42.th>          +#+  +:+       +#+        */
+/*   By: csantivi <csantivi@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/06/25 13:44:29 by csantivi          #+#    #+#             */
-/*   Updated: 2023/07/02 01:24:11 by tkraikua         ###   ########.fr       */
+/*   Updated: 2023/07/10 22:42:24 by csantivi         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -42,7 +42,7 @@ int	check_file_name(char *name)
 	while (--e != s && i >= 0)
 		if (name[e] != type[i--])
 			break ;
-	if (i == -1 && e != s)
+	if (i == -1 && e != (s - e))
 		return (1);
 	ft_putstr_fd(": Invalid name of file\n", 2);
 	return (0);

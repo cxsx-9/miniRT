@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   good_variable.c                                    :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: csantivi <csantivi@student.42bangkok.co    +#+  +:+       +#+        */
+/*   By: csantivi <csantivi@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/06/28 15:34:02 by csantivi          #+#    #+#             */
-/*   Updated: 2023/07/01 20:35:02 by csantivi         ###   ########.fr       */
+/*   Updated: 2023/07/10 22:55:25 by csantivi         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -36,22 +36,30 @@ int	good_unit(char **unit_vect)
 	return (1);
 }
 
+const int	get_max(char *type)
+{
+	if (same_str(type, "FOV"))
+		return (180);
+	else if (same_str(type, "Ratio"))
+		return (1);
+	else if (same_str(type, "Color"))
+		return (255);
+	else
+		return (INT32_MAX);
+}
+
 int	good_size(char *num, char *type)
 {
 	int	max;
 
-	max = INT16_MAX;
 	if (!good_double(num, 1))
 		return (0);
-	if (same_str(type, "FOV"))
-		max = 180;
-	else if (same_str(type, "Ratio"))
-		max = 1;
+	max = get_max(type);
 	if (!good_positive_double(num, max))
 	{
 		ft_putstr_fd(": ", 2);
 		write(2, type, ft_strlen(type));
-		if (max == 1 || max == 180)
+		if (max == 1 || max == 180 || max == 255)
 		{
 			ft_putstr_fd(" should be in the range [0,", 2);
 			ft_putnbr_fd(max, 2);
@@ -93,15 +101,8 @@ int	good_color(char **input)
 	i = -1;
 	status = 1;
 	while (status && input[++i])
-	{
-		if (!good_integer(input[i], 1))
+		if (!good_integer(input[i], 1) || !good_size(input[i], "Color"))
 			status = 0;
-		if (status && !good_positive_int(input[i]))
-		{
-			ft_putstr_fd(": color should be positive", 2);
-			status = 0;
-		}
-	}
 	if (status && i != 3)
 	{
 		ft_putstr_fd(": Not enough color", 2);
