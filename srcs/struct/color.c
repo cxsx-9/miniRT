@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   color.c                                            :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: tkraikua <tkraikua@student.42.fr>          +#+  +:+       +#+        */
+/*   By: csantivi <csantivi@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/06/09 13:53:22 by tkraikua          #+#    #+#             */
-/*   Updated: 2023/07/08 17:30:09 by tkraikua         ###   ########.fr       */
+/*   Updated: 2023/07/11 21:03:27 by csantivi         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -31,5 +31,11 @@ int	get_color(t_vect color)
 	r = (int)(color.x * 255.0);
 	g = (int)(color.y * 255.0);
 	b = (int)(color.z * 255.0);
+	if (color.x > 1)
+		r = 255;
+	if (color.y > 1)
+		g = 255;
+	if (color.z > 1)
+		b = 255;
 	return (r << 16 | g << 8 | b);
 }

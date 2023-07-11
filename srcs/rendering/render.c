@@ -6,7 +6,7 @@
 /*   By: csantivi <csantivi@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/06/27 12:47:35 by tkraikua          #+#    #+#             */
-/*   Updated: 2023/07/11 20:49:20 by csantivi         ###   ########.fr       */
+/*   Updated: 2023/07/11 21:00:30 by csantivi         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -149,25 +149,25 @@ t_vect	get_object_color(t_obj *obj)
 	return (color(0,0,0));
 }
 
-double	set_color_range(double color)
-{
-	if (color > 1.0)
-		return (1.0);
-	else if (color < 0.0)
-		return (0.0);
-	else
-		return (color);
-}
+// double	set_color_range(double color)
+// {
+// 	if (color > 1.0)
+// 		return (1.0);
+// 	else if (color < 0.0)
+// 		return (0.0);
+// 	else
+// 		return (color);
+// }
 
-t_vect	set_color(t_vect color)
-{
-	t_vect	new_color;
+// t_vect	set_color(t_vect color)
+// {
+// 	t_vect	new_color;
 
-	new_color.x = set_color_range(color.x);
-	new_color.y = set_color_range(color.y);
-	new_color.z = set_color_range(color.z);
-	return (new_color);
-}
+// 	new_color.x = set_color_range(color.x);
+// 	new_color.y = set_color_range(color.y);
+// 	new_color.z = set_color_range(color.z);
+// 	return (new_color);
+// }
 
 t_vect	per_pixel(t_camera *camera, t_scene *scene, int x, int y)
 {
@@ -192,7 +192,7 @@ t_vect	per_pixel(t_camera *camera, t_scene *scene, int x, int y)
 		double lightIntensity = MAX(dot_product(payload.world_norm, multi_vect(light_dir, -1)), 0.0); // = cos(angle)
 		
 		t_vect obj_color = multi_vect(get_object_color(payload.obj), lightIntensity);
-		c = set_color(add_vect(c, multi_vect(obj_color, multiplier)));
+		c = add_vect(c, multi_vect(obj_color, multiplier));
 	
 		multiplier *= 0.7;
 
