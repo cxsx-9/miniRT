@@ -6,7 +6,7 @@
 /*   By: csantivi <csantivi@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/06/27 12:47:35 by tkraikua          #+#    #+#             */
-/*   Updated: 2023/07/11 20:37:11 by csantivi         ###   ########.fr       */
+/*   Updated: 2023/07/11 20:49:20 by csantivi         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -48,7 +48,7 @@ void	closest_hit_sphere(t_ray ray, double hit_distance, t_sphere *sphere, t_payl
 
 void	closest_hit_plane(t_ray ray, double hit_distance, t_plane *plane, t_payload *payload)
 {
-	printf("HIT PLANE! ");
+	// printf("HIT PLANE! ");
 	payload->world_norm = plane->dir;
 	payload->world_pos = add_vect(ray.orig ,multi_vect(ray.dir, hit_distance));
 }
@@ -59,12 +59,12 @@ int	hit_plane(t_plane *p, t_ray ray, double *closestT)
 
 	// printf("HIT PLANE! [1]  ");
 	denom = dot_product(p->dir, ray.dir);
-	if (denom > 0.0001 && denom < 0.0001)
+	if (fabs(denom) > 0.0001)
 	{
+			// printf("[1] ");
 		*closestT = dot_product(sub_vect(p->center, ray.orig), p->dir) / denom;
 		if (*closestT > 0.0001)
 		{
-			// printf("[1] ");
 			return (1);
 		}
 	}
