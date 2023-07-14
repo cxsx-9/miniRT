@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   render.c                                           :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: csantivi <csantivi@student.42.fr>          +#+  +:+       +#+        */
+/*   By: csantivi <csantivi@student.42bangkok.co    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/06/27 12:47:35 by tkraikua          #+#    #+#             */
-/*   Updated: 2023/07/11 21:00:30 by csantivi         ###   ########.fr       */
+/*   Updated: 2023/07/14 13:32:23 by csantivi         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -57,18 +57,13 @@ int	hit_plane(t_plane *p, t_ray ray, double *closestT)
 {
 	double	denom;
 
-	// printf("HIT PLANE! [1]  ");
 	denom = dot_product(p->dir, ray.dir);
 	if (fabs(denom) > 0.0001)
 	{
-			// printf("[1] ");
 		*closestT = dot_product(sub_vect(p->center, ray.orig), p->dir) / denom;
 		if (*closestT > 0.0001)
-		{
 			return (1);
-		}
 	}
-	// printf("[0] ");
 	return (0);
 }
 
@@ -149,35 +144,53 @@ t_vect	get_object_color(t_obj *obj)
 	return (color(0,0,0));
 }
 
-// double	set_color_range(double color)
-// {
-// 	if (color > 1.0)
-// 		return (1.0);
-// 	else if (color < 0.0)
-// 		return (0.0);
-// 	else
-// 		return (color);
-// }
+int obj_block(t_ray ray, t_payload *payload, t_scene *scene)
+{
+	t_obj		*objs = scene->objs;
+	t_obj		*closest_obj = NULL;
+	double	hit_distance = DBL_MAX;
+	double	closestT;
+	t_vect light_dir = normalize(vect(-1, -1, -1));
 
-// t_vect	set_color(t_vect color)
-// {
-// 	t_vect	new_color;
+	ray.orig = add_vect(payload->world_pos, multi_vect(payload->world_norm, 0.0001));
+	ray.dir = multi_vect(light_dir, -1);
+	// ray.dir = normalize(sub_vect(ray.orig, scene->lights->center));
+	while (objs != NULL)
+	{
+		if (get_closestT(objs, ray, &closestT) &&
+			(closestT > 0 && closestT < hit_distance))
+		{
+			return (1);
+		}
+		objs = objs->next;
+	}
+	return (0);
+}
 
-// 	new_color.x = set_color_range(color.x);
-// 	new_color.y = set_color_range(color.y);
-// 	new_color.z = set_color_range(color.z);
-// 	return (new_color);
-// }
+t_vect	mix_color(t_vect color1, t_vect color2, double ratio, int mode)
+{
+	t_vect	color;
+
+	color.x = (color1.x * ratio) + (color2.x * (1 - ratio));
+	color.y = (color1.y * ratio) + (color2.y * (1 - ratio));
+	color.z = (color1.z * ratio) + (color2.z * (1 - ratio));
+	if (mode)
+		color = multi_vect(color, ratio);
+	return (color);
+}
 
 t_vect	per_pixel(t_camera *camera, t_scene *scene, int x, int y)
 {
 	t_vect		c = color(0, 0, 0);
 	t_ray		ray;
 	t_payload	payload;
+	t_vect		obj_color;
+	t_vect light_dir;
+	double lightIntensity;
 
 	ray = camera->ray[x + y * WIN_WIDTH];
 	double multiplier = 1.0;
-	
+	light_dir = normalize(vect(-1, -1, -1));
 	int bounces = 2;
 	for (int i = 0; i < bounces; i++)
 	{
@@ -187,17 +200,18 @@ t_vect	per_pixel(t_camera *camera, t_scene *scene, int x, int y)
 			c = add_vect(c, multi_vect(sky_color, multiplier));
 			break;
 		}
-
-		t_vect light_dir = normalize(vect(-1, -1, -1));
-		double lightIntensity = MAX(dot_product(payload.world_norm, multi_vect(light_dir, -1)), 0.0); // = cos(angle)
-		
-		t_vect obj_color = multi_vect(get_object_color(payload.obj), lightIntensity);
-		c = add_vect(c, multi_vect(obj_color, multiplier));
+		if (i < 1)
+			c = mix_color(scene->ambient_light->color, get_object_color(payload.obj), scene->ambient_light->r, 1); // ambient
+		if (!obj_block(ray, &payload, scene))
+		{
+			lightIntensity = MAX(dot_product(payload.world_norm, multi_vect(light_dir, -1)), 0.0); // = cos(angle)
+			obj_color = multi_vect(get_object_color(payload.obj), (lightIntensity * 0.7)); // ratio
+			c = add_vect(c, multi_vect(obj_color, multiplier));
+		}
 	
 		multiplier *= 0.7;
 
 		ray.orig = add_vect(payload.world_pos, multi_vect(payload.world_norm, 0.0001));
-		// ray.orig = payload.world_pos;
 		ray.dir = reflect(ray.dir, payload.world_norm);
 	}
 	return (c);

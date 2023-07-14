@@ -3,10 +3,10 @@
 #                                                         :::      ::::::::    #
 #    Makefile                                           :+:      :+:    :+:    #
 #                                                     +:+ +:+         +:+      #
-#    By: csantivi <csantivi@student.42.fr>          +#+  +:+       +#+         #
+#    By: csantivi <csantivi@student.42bangkok.co    +#+  +:+       +#+         #
 #                                                 +#+#+#+#+#+   +#+            #
 #    Created: 2022/02/16 18:49:59 by csantivi          #+#    #+#              #
-#    Updated: 2023/06/14 16:40:30 by csantivi         ###   ########.fr        #
+#    Updated: 2023/07/13 23:20:41 by csantivi         ###   ########.fr        #
 #                                                                              #
 # **************************************************************************** #
 

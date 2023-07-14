@@ -1,0 +1,136 @@
+t_payload	closest_hit(t_ray ray, double hit_distance, t_obj *obj)
+{
+	t_payload	payload;
+	t_sphere *closest_sphere;
+
+	payload.hit_distance = hit_distance;
+	payload.obj = obj;
+	closest_sphere = (t_sphere*) obj->content;
+	t_vect origin = sub_vect(ray.orig, closest_sphere->center);
+	payload.world_pos = add_vect(origin, multi_vect(ray.dir, hit_distance));
+	payload.world_norm = normalize(payload.world_pos);
+	payload.world_pos = add_vect(payload.world_pos, closest_sphere->center);
+	// payload.world_norm = normalize(sub_vect(payload.world_pos, closest_sphere->center));
+	return (payload);
+}
+
+t_vect	per_pixel(t_camera *camera, t_scene *scene, int x, int y)
+{
+	t_vect		c = color(0, 0, 0);
+	t_ray		ray;
+	t_payload	payload;
+	t_vect		obj_color;
+	t_vect light_dir;
+	double lightIntensity;
+
+	ray = camera->ray[x + y * WIN_WIDTH];
+	double multiplier = 1.0;
+	
+	int bounces = 2;
+	for (int i = 0; i < bounces; i++)
+	{
+		payload = ray_trace(camera, scene, ray);
+		if (payload.hit_distance < 0){
+			t_vect sky_color = color(0, 0, 0);
+			c = add_vect(c, multi_vect(sky_color, multiplier));
+			break;
+		}
+
+		// ambient
+		c = multi_vect(scene->ambient_light->color, scene->ambient_light->r);
+
+		// if (!obj_block(ray, &payload, scene));
+			// lightIntensity = MAX(dot_product(payload.world_norm, scene->lights->center), 0.0); // use scene light
+		
+		obj_color = multi_vect(get_object_color(payload.obj), lightIntensity);
+		c = add_vect(c, multi_vect(obj_color, multiplier));
+
+		multiplier *= 0.7;
+
+		ray.orig = add_vect(payload.world_pos, multi_vect(payload.world_norm, 0.0001));
+		// ray.orig = payload.world_pos;
+		ray.dir = reflect(ray.dir, payload.world_norm);
+
+		light_dir = normalize(vect(1, 1, 1));
+		lightIntensity = MAX(dot_product(payload.world_norm, multi_vect(light_dir, 1)), 0.0); // = cos(angle)
+	}
+	// double lightIntensity = MAX(dot_product(payload.world_norm, scene->lights->center), 0.0); // = cos(angle)
+	return (c);
+}
+
+real
+
+t_vect	per_pixel(t_camera *camera, t_scene *scene, int x, int y)
+{
+	t_vect		c = color(0, 0, 0);
+	t_ray		ray;
+	t_payload	payload;
+
+	ray = camera->ray[x + y * WIN_WIDTH];
+	double multiplier = 1.0;
+	
+	int bounces = 2;
+	for (int i = 0; i < bounces; i++)
+	{
+		payload = ray_trace(camera, scene, ray);
+		if (payload.hit_distance < 0){
+			t_vect sky_color = color(0, 0, 0);
+			c = add_vect(c, multi_vect(sky_color, multiplier));
+			break;
+		}
+
+		t_vect light_dir = normalize(vect(-1, -1, -1));
+		double lightIntensity = MAX(dot_product(payload.world_norm, multi_vect(light_dir, -1)), 0.0); // = cos(angle)
+		
+		t_vect obj_color = multi_vect(get_object_color(payload.obj), lightIntensity);
+		c = add_vect(c, multi_vect(obj_color, multiplier));
+	
+		multiplier *= 0.7;
+
+		ray.orig = add_vect(payload.world_pos, multi_vect(payload.world_norm, 0.0001));
+		// ray.orig = payload.world_pos;
+		ray.dir = reflect(ray.dir, payload.world_norm);
+	}
+	return (c);
+}
+
+new_color
+
+t_vect	per_pixel(t_camera *camera, t_scene *scene, int x, int y)
+{
+	t_vect		c = color(0, 0, 0);
+	t_ray		ray;
+	t_payload	payload;
+	t_vect		obj_color;
+	t_vect light_dir;
+	double lightIntensity;
+
+	ray = camera->ray[x + y * WIN_WIDTH];
+	double multiplier = 1.0;
+	light_dir = normalize(vect(-1, -1, -1));
+	int bounces = 2;
+	for (int i = 0; i < bounces; i++)
+	{
+		payload = ray_trace(camera, scene, ray);
+		if (payload.hit_distance < 0){
+			t_vect sky_color = color(0, 0, 0);
+			c = add_vect(c, multi_vect(sky_color, multiplier));
+			break;
+		}
+		c = add_vect(c, multi_vect(scene->ambient_light->color, scene->ambient_light->r)); // ambient
+
+		// if (!obj_block(ray, &payload, scene))
+			lightIntensity = MAX(dot_product(payload.world_norm, multi_vect(light_dir, -1)), 0.0); // = cos(angle)
+		obj_color = multi_vect(get_object_color(payload.obj), lightIntensity);
+		c = add_vect(c, multi_vect(obj_color, multiplier));
+	
+		multiplier *= 0.7;
+
+		ray.orig = add_vect(payload.world_pos, multi_vect(payload.world_norm, 0.0001));
+		// ray.orig = payload.world_pos;
+		ray.dir = reflect(ray.dir, payload.world_norm);
+	}
+	// 	lightIntensity = MAX(dot_product(payload.world_norm, multi_vect(light_dir, -1)), 0.0); // = cos(angle)
+	// double lightIntensity = MAX(dot_product(payload.world_norm, scene->lights->center), 0.0); // = cos(angle)
+	return (c);
+}
