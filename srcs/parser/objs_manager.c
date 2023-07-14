@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   objs_manager.c                                     :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: tkraikua <tkraikua@student.42.fr>          +#+  +:+       +#+        */
+/*   By: csantivi <csantivi@student.42bangkok.co    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/06/28 16:53:17 by csantivi          #+#    #+#             */
-/*   Updated: 2023/07/10 13:09:20 by tkraikua         ###   ########.fr       */
+/*   Updated: 2023/07/15 00:27:40 by csantivi         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -31,6 +31,15 @@ t_obj	*lst_objs_last(t_obj *objs)
 	return (objs);
 }
 
+t_light	*lst_lights_last(t_light *light)
+{
+	if (!light)
+		return (NULL);
+	while (light->next)
+		light = light->next;
+	return (light);
+}
+
 void	lst_objs_addback(t_obj **objs, t_obj *new_obj)
 {
 	t_obj	*last;
@@ -44,4 +53,19 @@ void	lst_objs_addback(t_obj **objs, t_obj *new_obj)
 	}
 	else
 		*objs = new_obj;
+}
+
+void	lst_lights_addback(t_light **lights, t_light *new_light)
+{
+	t_light	*last;
+
+	if (!lights || !new_light)
+		return ;
+	if (*lights)
+	{
+		last = lst_lights_last(*lights);
+		last->next = new_light;
+	}
+	else
+		*lights = new_light;
 }

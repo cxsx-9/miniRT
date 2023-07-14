@@ -6,7 +6,7 @@
 /*   By: csantivi <csantivi@student.42bangkok.co    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/06/08 13:42:53 by tkraikua          #+#    #+#             */
-/*   Updated: 2023/07/14 00:44:14 by csantivi         ###   ########.fr       */
+/*   Updated: 2023/07/15 00:05:11 by csantivi         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -83,18 +83,6 @@ int main( int ac, char **av )
 	minirt->cam->right = cross_product(minirt->cam->forward, vect(0, 1, 0));
 	minirt->cam->up = cross_product(minirt->cam->right, minirt->cam->forward);
 
-
-	// minirt->cam->rot = vect(0, 1, 0);
-	// minirt->cam->right = vect(1, 0, 0);
-	// minirt->cam->up = vect(0, 0, -1);
-
-	// minirt = init_minirt();
-
-	// set_camera(minirt);
-	// set_object(minirt);
-
-	// mlx_mouse_hook(minirt->win, &mouse_event, NULL);
-	// mlx_key_hook(minirt->win, &key_event, minirt);
 	mlx_loop_hook(minirt->mlx, &loop_event, minirt);
 	mlx_hook(minirt->win, KeyPress, KeyPressMask, &handle_keypress, minirt);
 	mlx_hook(minirt->win, KeyRelease, KeyReleaseMask, &handle_keyrelease, minirt);

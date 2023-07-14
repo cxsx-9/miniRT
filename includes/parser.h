@@ -6,7 +6,7 @@
 /*   By: csantivi <csantivi@student.42bangkok.co    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/06/26 16:32:18 by csantivi          #+#    #+#             */
-/*   Updated: 2023/07/05 22:49:57 by csantivi         ###   ########.fr       */
+/*   Updated: 2023/07/14 22:38:44 by csantivi         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -49,6 +49,8 @@ int     check_cylinder(char **data, t_obj_count *counter);
 void	init_object_count(t_obj_count *counter);
 t_obj	*lst_objs_last(t_obj *objs);
 void	lst_objs_addback(t_obj **objs, t_obj *new_obj);
+t_light	*lst_lights_last(t_light *light);
+void	lst_lights_addback(t_light **lights, t_light *new_light);
 
 int		check_line(char *line, t_obj_count *counter);
 int		check_all(char *name);

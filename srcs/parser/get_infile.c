@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   get_infile.c                                       :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: tkraikua <tkraikua@student.42.fr>          +#+  +:+       +#+        */
+/*   By: csantivi <csantivi@student.42bangkok.co    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/06/28 15:27:12 by csantivi          #+#    #+#             */
-/*   Updated: 2023/07/10 13:09:41 by tkraikua         ###   ########.fr       */
+/*   Updated: 2023/07/15 00:04:44 by csantivi         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -38,6 +38,8 @@ void	get_all(char *name, t_minirt *minirt)
 	scene = malloc(sizeof(t_scene));
 	minirt->scene = scene;
 	minirt->scene->objs = NULL;
+	minirt->scene->lights = NULL;
+	minirt->scene->ambient_light = NULL;
 	fd = open(name, O_RDONLY);
 	line = get_next_line(fd);
 	while (line != NULL)

@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   get_light.c                                        :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: csantivi <csantivi@student.42.fr>          +#+  +:+       +#+        */
+/*   By: csantivi <csantivi@student.42bangkok.co    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/07/05 22:23:08 by csantivi          #+#    #+#             */
-/*   Updated: 2023/07/10 22:28:50 by csantivi         ###   ########.fr       */
+/*   Updated: 2023/07/14 23:16:25 by csantivi         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -43,5 +43,6 @@ void	get_light(char **data, t_minirt *minirt)
 	light = malloc(sizeof(t_light));
 	get_coordinate(ft_split(data[1], ','), &light->center);
 	get_double(data[2], &light->b);
-	minirt->scene->lights = light;
+	light->next = NULL;
+	lst_lights_addback(&minirt->scene->lights, light);
 }
