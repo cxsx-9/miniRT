@@ -6,7 +6,7 @@
 /*   By: csantivi <csantivi@student.42bangkok.co    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/06/27 12:47:35 by tkraikua          #+#    #+#             */
-/*   Updated: 2023/07/14 15:55:07 by csantivi         ###   ########.fr       */
+/*   Updated: 2023/07/14 20:26:20 by csantivi         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -144,21 +144,20 @@ t_vect	get_object_color(t_obj *obj)
 	return (color(0,0,0));
 }
 
-int obj_block(t_ray ray, t_payload *payload, t_scene *scene)
+int obj_block(t_ray ray, t_payload *payload, t_scene *scene, t_vect light_dir)
 {
-	t_obj		*objs = scene->objs;
-	t_obj		*closest_obj = NULL;
-	double	hit_distance = DBL_MAX;
+	t_obj	*objs;
 	double	closestT;
+	double	hit_distance;
 
-	ray.dir = normalize(sub_vect(scene->lights->center, ray.orig));
+	ray.dir = light_dir;
+	objs = scene->objs;
+	hit_distance = dist_vect(sub_vect(scene->lights->center, ray.orig));
 	while (objs != NULL)
 	{
 		if (get_closestT(objs, ray, &closestT) &&
 			(closestT > 0 && closestT < hit_distance))
-		{
 			return (1);
-		}
 		objs = objs->next;
 	}
 	return (0);
@@ -171,8 +170,10 @@ t_vect	mix_color(t_vect color1, t_vect color2, double ratio, int mode)
 	color.x = (color1.x * ratio) + (color2.x * (1 - ratio));
 	color.y = (color1.y * ratio) + (color2.y * (1 - ratio));
 	color.z = (color1.z * ratio) + (color2.z * (1 - ratio));
-	if (mode)
+	if (mode == 0)
 		color = multi_vect(color, ratio);
+	else
+		color = multi_vect(color, mode);
 	return (color);
 }
 
@@ -187,25 +188,24 @@ t_vect	per_pixel(t_camera *camera, t_scene *scene, int x, int y)
 
 	ray = camera->ray[x + y * WIN_WIDTH];
 	double multiplier = 1.0;
-	int bounces = 2;
+	int bounces = 1;
 	for (int i = 0; i < bounces; i++)
 	{
-		// light_dir = normalize(vect(1, 1, 0));
 		payload = ray_trace(camera, scene, ray);
-		if (payload.hit_distance < 0){
-			t_vect sky_color = color(0, 0, 0);
-			c = add_vect(c, multi_vect(sky_color, multiplier));
-			break;
-		}
+		if (payload.hit_distance < 0)
+			return (add_vect(c, multi_vect(color(0, 0, 0), multiplier)));
 		if (scene->ambient_light && i < 1)  // ambient
-			c = mix_color(scene->ambient_light->color, get_object_color(payload.obj), scene->ambient_light->r, 1);
+			c = mix_color(scene->ambient_light->color, get_object_color(payload.obj), scene->ambient_light->r, 0);
 		ray.orig = add_vect(payload.world_pos, multi_vect(payload.world_norm, 0.0001));
-		if (scene->lights && !obj_block(ray, &payload, scene))
+		if (scene->lights)
 		{
 			light_dir = normalize(sub_vect(scene->lights->center, ray.orig));
-			lightIntensity = MAX(dot_product(payload.world_norm, light_dir), 0.0); // = cos(angle)
-			obj_color = multi_vect(get_object_color(payload.obj), (lightIntensity * scene->lights->b)); // ratio
-			c = add_vect(c, multi_vect(obj_color, multiplier));
+			if (!obj_block(ray, &payload, scene, light_dir))
+			{
+				lightIntensity = MAX(dot_product(payload.world_norm, light_dir), 0.0); // = cos(angle)
+				obj_color = multi_vect(get_object_color(payload.obj), (lightIntensity * scene->lights->b)); // ratio
+				c = add_vect(c, multi_vect(obj_color, multiplier));
+			}
 		}
 		multiplier *= 0.7;
 		ray.dir = reflect(ray.dir, payload.world_norm);
