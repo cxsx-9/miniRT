@@ -6,7 +6,7 @@
 /*   By: csantivi <csantivi@student.42bangkok.co    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/06/27 12:47:35 by tkraikua          #+#    #+#             */
-/*   Updated: 2023/07/15 00:32:17 by csantivi         ###   ########.fr       */
+/*   Updated: 2023/07/15 00:53:52 by csantivi         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -188,15 +188,16 @@ t_vect	per_pixel(t_camera *camera, t_scene *scene, int x, int y)
 
 	ray = camera->ray[x + y * WIN_WIDTH];
 	double multiplier = 1.0;
-	int bounces = 1;
+	int bounces = 2;
 	for (int i = 0; i < bounces; i++)
 	{
 		payload = ray_trace(camera, scene, ray);
 		if (payload.hit_distance < 0)
 		{
-			c = color(0, 0, 0); //sky_color
+			t_vect	sky = color(0, 0, 0); //sky_color
 			if (scene->ambient_light)
-				c = mix_color(scene->ambient_light->color, c, scene->ambient_light->r, 0);
+				sky = mix_color(scene->ambient_light->color, c, scene->ambient_light->r, 0);
+			c = add_vect(c, multi_vect(sky, multiplier));
 			break;
 		}
 		if (scene->ambient_light && i < 1)  // ambient
