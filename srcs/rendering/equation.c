@@ -1,33 +1,30 @@
 /* ************************************************************************** */
 /*                                                                            */
 /*                                                        :::      ::::::::   */
-/*   minirt.h                                           :+:      :+:    :+:   */
+/*   equation.c                                         :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
 /*   By: csantivi <csantivi@student.42bangkok.co    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
-/*   Created: 2023/07/15 11:57:13 by csantivi          #+#    #+#             */
-/*   Updated: 2023/07/15 11:57:16 by csantivi         ###   ########.fr       */
+/*   Created: 2023/07/15 12:26:26 by csantivi          #+#    #+#             */
+/*   Updated: 2023/07/15 14:34:40 by csantivi         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
-#ifndef MINIRT_H
-# define MINIRT_H
+#include "minirt.h"
+#include "render.h"
 
-# include <stdlib.h>
-# include <stdio.h>
-# include <unistd.h>
-# include <fcntl.h>
-# include <errno.h>
-# include <string.h>
-# include <math.h>
+t_vect	reflect(t_vect incident, t_vect norm)
+{
+	t_vect	multi;
 
-# include "../libft/libft.h"
-# include "../mlx/mlx.h"
+	multi = multi_vect(norm, 2.0 * dot_product(incident, norm));
+	return (sub_vect(incident, multi));
+}
 
-# include "minirt_define.h"
-# include "minirt_mlx.h"
-# include "minirt_struct.h"
+t_vect	new_ray_origin(t_payload *load)
+{
+	t_vect	new_norm;
 
-# include "parser.h"
-
-#endif
+	new_norm = multi_vect(load->world_norm, 0.0001);
+	return (add_vect(load->world_pos, new_norm));
+}

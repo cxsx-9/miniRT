@@ -3,16 +3,16 @@
 /*                                                        :::      ::::::::   */
 /*   init.c                                             :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: csantivi <csantivi@student.42.fr>          +#+  +:+       +#+        */
+/*   By: csantivi <csantivi@student.42bangkok.co    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/06/21 20:55:02 by tkraikua          #+#    #+#             */
-/*   Updated: 2023/07/10 22:37:09 by csantivi         ###   ########.fr       */
+/*   Updated: 2023/07/15 18:16:20 by csantivi         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "minirt.h"
 
-t_minirt	*init_minirt()
+t_minirt	*init_minirt(void)
 {
 	t_minirt	*minirt;
 

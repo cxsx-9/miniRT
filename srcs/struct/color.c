@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   color.c                                            :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: csantivi <csantivi@student.42.fr>          +#+  +:+       +#+        */
+/*   By: csantivi <csantivi@student.42bangkok.co    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/06/09 13:53:22 by tkraikua          #+#    #+#             */
-/*   Updated: 2023/07/11 21:03:27 by csantivi         ###   ########.fr       */
+/*   Updated: 2023/07/15 12:18:30 by csantivi         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -14,7 +14,7 @@
 
 t_vect	color(int r, int g, int b)
 {
-	t_vect color;
+	t_vect	color;
 
 	color.x = r / 255.0;
 	color.y = g / 255.0;
@@ -24,9 +24,9 @@ t_vect	color(int r, int g, int b)
 
 int	get_color(t_vect color)
 {
-	int r;
-	int g;
-	int b;
+	int	r;
+	int	g;
+	int	b;
 
 	r = (int)(color.x * 255.0);
 	g = (int)(color.y * 255.0);
@@ -38,4 +38,18 @@ int	get_color(t_vect color)
 	if (color.z > 1)
 		b = 255;
 	return (r << 16 | g << 8 | b);
+}
+
+t_vect	mix_color(t_vect color1, t_vect color2, double ratio, double mode)
+{
+	t_vect	color;
+
+	color.x = (color1.x * ratio) + (color2.x * (1 - ratio));
+	color.y = (color1.y * ratio) + (color2.y * (1 - ratio));
+	color.z = (color1.z * ratio) + (color2.z * (1 - ratio));
+	if (mode == 0)
+		color = multi_vect(color, ratio);
+	else
+		color = multi_vect(color, mode);
+	return (color);
 }

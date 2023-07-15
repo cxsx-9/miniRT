@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   object.h                                           :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: tkraikua <tkraikua@student.42.th>          +#+  +:+       +#+        */
+/*   By: csantivi <csantivi@student.42bangkok.co    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/06/09 13:44:11 by tkraikua          #+#    #+#             */
-/*   Updated: 2023/07/02 00:53:23 by tkraikua         ###   ########.fr       */
+/*   Updated: 2023/07/15 12:01:56 by csantivi         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -16,7 +16,7 @@
 # include "vector.h"
 # include "color.h"
 
-typedef enum	e_obj_id
+typedef enum e_obj_id
 {
 	SPHERE,
 	PLANE,
@@ -33,24 +33,24 @@ typedef struct s_obj
 typedef struct s_sphere
 {
 	t_vect		center;
-	double		d;		// the sphere diameter
-	double		r;		// the sphere radius
-	t_vect 		color;
+	double		d;
+	double		r;
+	t_vect		color;
 }	t_sphere;
 
 typedef struct s_plane
 {
 	t_vect		center;
-	t_vect		dir;	// 3d normalized normal vector. In range [-1,1] for each x,y,z axis
+	t_vect		dir;
 	t_vect		color;
 }	t_plane;
 
 typedef struct s_cylinder
 {
 	t_vect		center;
-	t_vect		dir;	// 3d normalized vector of axis of cylinder. In range [-1,1] for each x,y,z axis
-	double		d;		// the cylinder diameter
-	double		h;		// the cylinder height
+	t_vect		dir;
+	double		d;
+	double		h;
 	t_vect		color;
 }	t_cylinder;
 

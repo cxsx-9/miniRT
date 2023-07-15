@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   control.h                                          :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: tkraikua <tkraikua@student.42.th>          +#+  +:+       +#+        */
+/*   By: csantivi <csantivi@student.42bangkok.co    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/06/08 18:17:52 by tkraikua          #+#    #+#             */
-/*   Updated: 2023/07/01 01:24:02 by tkraikua         ###   ########.fr       */
+/*   Updated: 2023/07/15 11:55:29 by csantivi         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -30,16 +30,15 @@
 # define KEY_W 13
 # define KEY_E 14
 
-
 # define LEFT_CLICK 1
 # define RIGHT_CLICK 2
 # define WHEEL_UP 4
 # define WHEEL_DOWN 5
 
-int close_event( void* minirt );
-int mouse_event(int button, int x, int y, void *param);
-int handle_keypress(int keycode, void *param);
-int handle_keyrelease(int keycode, void *param);
-int loop_event(void *param);
+int	close_event(void *minirt);
+int	mouse_event(int button, int x, int y, void *param);
+int	handle_keypress(int keycode, void *param);
+int	handle_keyrelease(int keycode, void *param);
+int	loop_event(void *param);
 
 #endif

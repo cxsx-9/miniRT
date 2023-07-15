@@ -3,15 +3,15 @@
 /*                                                        :::      ::::::::   */
 /*   minirt_mlx.h                                       :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: tkraikua <tkraikua@student.42.th>          +#+  +:+       +#+        */
+/*   By: csantivi <csantivi@student.42bangkok.co    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/06/22 11:17:19 by tkraikua          #+#    #+#             */
-/*   Updated: 2023/07/02 01:16:53 by tkraikua         ###   ########.fr       */
+/*   Updated: 2023/07/15 11:58:07 by csantivi         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
-#ifndef MINIRT_MLX
-# define MINIRT_MLX
+#ifndef MINIRT_MLX_H
+# define MINIRT_MLX_H
 
 // X11 events
 # define KeyPress 02

@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   ray.h                                              :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: tkraikua <tkraikua@student.42.th>          +#+  +:+       +#+        */
+/*   By: csantivi <csantivi@student.42bangkok.co    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/06/13 12:46:18 by tkraikua          #+#    #+#             */
-/*   Updated: 2023/07/02 00:38:24 by tkraikua         ###   ########.fr       */
+/*   Updated: 2023/07/15 12:05:45 by csantivi         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -15,10 +15,10 @@
 
 # include "vector.h"
 
-typedef struct	s_ray
+typedef struct s_ray
 {
-	t_vect	orig;	// ray origin
-	t_vect	dir;	// ray direction
+	t_vect	orig;
+	t_vect	dir;
 }	t_ray;
 
 #endif

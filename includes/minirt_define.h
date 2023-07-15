@@ -3,23 +3,20 @@
 /*                                                        :::      ::::::::   */
 /*   minirt_define.h                                    :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: tkraikua <tkraikua@student.42.fr>          +#+  +:+       +#+        */
+/*   By: csantivi <csantivi@student.42bangkok.co    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/06/22 23:36:11 by tkraikua          #+#    #+#             */
-/*   Updated: 2023/07/08 15:21:17 by tkraikua         ###   ########.fr       */
+/*   Updated: 2023/07/15 18:03:16 by csantivi         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
-#ifndef MINIRT_DEFINE
-# define MINIRT_DEFINE
+#ifndef MINIRT_DEFINE_H
+# define MINIRT_DEFINE_H
 
 # define WIN_WIDTH 1280
 # define WIN_HEIGHT 720
 # define TITLE "MINIRT"
 
-# define MIN(a,b) (a < b ? a:b)
-# define MAX(a,b) (a > b ? a:b)
-
-#define DBL_MAX 1.7976931348623158e+308
+# define DBL_MAX 1.7976931348623158e+308
 
 #endif

@@ -5,8 +5,13 @@ SRC =	srcs/main.c		\
 		srcs/struct/color.c			\
 		srcs/struct/init.c			\
 		srcs/rendering/render.c		\
+		srcs/rendering/closest_hit.c	\
+		srcs/rendering/closest_t.c	\
+		srcs/rendering/equation.c	\
+		srcs/rendering/lighting.c	\
 		srcs/handler/event.c		\
-		srcs/vector/vector.c		\
+		srcs/vector/vector_1.c		\
+		srcs/vector/vector_2.c		\
 		srcs/utils/utils.c			\
 		srcs/utils/put_pixel.c		\
 		srcs/parser/error_message_1.c	\
