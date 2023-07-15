@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   event.c                                            :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: tkraikua <tkraikua@student.42.th>          +#+  +:+       +#+        */
+/*   By: csantivi <csantivi@student.42bangkok.co    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/06/18 15:24:09 by tkraikua          #+#    #+#             */
-/*   Updated: 2023/07/08 23:48:59 by tkraikua         ###   ########.fr       */
+/*   Updated: 2023/07/16 01:43:01 by csantivi         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -79,7 +79,7 @@ int handle_keypress(int keycode, void *param)
 	t_minirt	*minirt;
 
 	minirt = (t_minirt*) param;
-	// printf("keypresed -> %d\n", keycode);
+	printf("keypresed -> %d\n", keycode);
 	if (keycode == LEFT_SQUARE_BRACKETS)
 		minirt->cam->fov -= 1;
 	else if (keycode == RIGHT_SQUARE_BRACKETS)
@@ -104,6 +104,13 @@ int handle_keypress(int keycode, void *param)
 		roll_cw(minirt->cam, 0.02);
 	else if (keycode == DOWN_ARROW)
 		roll_ccw(minirt->cam, 0.02);
+	else if (keycode == KEY_MINUS)
+	{
+		if (minirt->cam->bounces > 1)
+			minirt->cam->bounces -= 1;
+	}
+	else if (keycode == KEY_PLUS)
+		minirt->cam->bounces += 1;
 	return (0);
 }
 

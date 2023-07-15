@@ -6,7 +6,7 @@
 /*   By: csantivi <csantivi@student.42bangkok.co    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/06/27 12:39:32 by tkraikua          #+#    #+#             */
-/*   Updated: 2023/07/15 12:06:16 by csantivi         ###   ########.fr       */
+/*   Updated: 2023/07/15 22:46:46 by csantivi         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -28,6 +28,7 @@ typedef struct s_light
 	double			b;
 	t_vect			color;
 	t_vect			light_dir;
+	double			intensity;
 	struct s_light	*next;
 }	t_light;
 

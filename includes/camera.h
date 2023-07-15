@@ -6,7 +6,7 @@
 /*   By: csantivi <csantivi@student.42bangkok.co    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/06/18 15:21:20 by tkraikua          #+#    #+#             */
-/*   Updated: 2023/07/15 18:02:34 by csantivi         ###   ########.fr       */
+/*   Updated: 2023/07/16 01:33:58 by csantivi         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -24,6 +24,7 @@ typedef struct s_camera
 	t_vect			up;
 	double			fov;
 	double			aspect_ratio;
+	int				bounces;
 	t_ray			*ray;
 }	t_camera;
 

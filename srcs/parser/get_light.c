@@ -6,7 +6,7 @@
 /*   By: csantivi <csantivi@student.42bangkok.co    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/07/05 22:23:08 by csantivi          #+#    #+#             */
-/*   Updated: 2023/07/14 23:16:25 by csantivi         ###   ########.fr       */
+/*   Updated: 2023/07/16 01:35:11 by csantivi         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -23,6 +23,7 @@ void	get_camera(char **data, t_minirt *minirt)
 	cam->aspect_ratio = (double) WIN_WIDTH / (double) WIN_HEIGHT;
 	cam->ray = malloc(sizeof(t_ray) * WIN_HEIGHT * WIN_WIDTH);
 	calculate_ray(cam);
+	cam->bounces = 1;
 	minirt->cam = cam;
 }
 

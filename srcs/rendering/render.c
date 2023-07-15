@@ -6,7 +6,7 @@
 /*   By: csantivi <csantivi@student.42bangkok.co    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/06/27 12:47:35 by tkraikua          #+#    #+#             */
-/*   Updated: 2023/07/15 16:48:52 by csantivi         ###   ########.fr       */
+/*   Updated: 2023/07/16 01:35:26 by csantivi         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -47,6 +47,8 @@ t_vect	get_object_color(t_obj *obj)
 		return (((t_sphere *)obj->content)->color);
 	if (obj->id == PLANE)
 		return (((t_plane *)obj->content)->color);
+	if (obj->id == CYLINDER)
+		return (((t_cylinder *)obj->content)->color);
 	return (color(0, 0, 0));
 }
 
@@ -79,7 +81,7 @@ t_vect	per_pixel(t_camera *camera, t_scene *scene, int x, int y)
 	ray = camera->ray[x + y * WIN_WIDTH];
 	pixel.multiplier = 1.0;
 	pixel.i = 0;
-	while (pixel.i < BOUNCES)
+	while (pixel.i < camera->bounces)
 	{
 		load = ray_trace(camera, scene, ray);
 		if (load.hit_distance < 0)
@@ -87,7 +89,7 @@ t_vect	per_pixel(t_camera *camera, t_scene *scene, int x, int y)
 		ray.orig = new_ray_origin(&load);
 		pixel.c = ambient_light(&pixel, scene, &load);
 		pixel.c = point_light(&pixel, scene, &load, &ray);
-		pixel.multiplier *= 0.2;
+		pixel.multiplier *= 0.7;
 		ray.dir = reflect(ray.dir, load.world_norm);
 		pixel.i++;
 	}

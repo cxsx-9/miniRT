@@ -6,7 +6,7 @@
 /*   By: csantivi <csantivi@student.42bangkok.co    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/06/08 18:17:52 by tkraikua          #+#    #+#             */
-/*   Updated: 2023/07/15 11:55:29 by csantivi         ###   ########.fr       */
+/*   Updated: 2023/07/16 01:31:42 by csantivi         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -29,6 +29,8 @@
 # define KEY_Q 12
 # define KEY_W 13
 # define KEY_E 14
+# define KEY_MINUS 27
+# define KEY_PLUS 24
 
 # define LEFT_CLICK 1
 # define RIGHT_CLICK 2

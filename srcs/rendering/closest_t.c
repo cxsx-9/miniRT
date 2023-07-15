@@ -6,7 +6,7 @@
 /*   By: csantivi <csantivi@student.42bangkok.co    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/07/15 11:42:38 by csantivi          #+#    #+#             */
-/*   Updated: 2023/07/15 14:19:25 by csantivi         ###   ########.fr       */
+/*   Updated: 2023/07/16 01:21:23 by csantivi         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -48,12 +48,45 @@ int	hit_sphere(t_sphere *sphere, t_ray ray, double *closestT)
 	return (1);
 }
 
+int	hit_cylinder(t_cylinder *cy, t_ray ray, double *closestT)
+{
+	t_vect	originxdir = cross_product(sub_vect(ray.orig, cy->center), cy->dir);
+    t_vect  rdxdir = cross_product(ray.dir, cy->dir);
+    float   a = dot_product(rdxdir, rdxdir);
+    float   b = 2 * dot_product(rdxdir, originxdir);
+    float   c = dot_product(originxdir, originxdir) - (cy->r * cy->r * dot_product(cy->dir, cy->dir));
+	
+	// check discriminant
+	double discriminant = b * b - 4.0 * a * c;
+	if (discriminant < 0)
+		return (0);
+	*closestT = (-b - sqrt(discriminant)) / (2.0 * a);
+	if (*closestT < 0)
+			*closestT = (-b + sqrt(discriminant)) / (2.0 * a);
+
+	// // complicated algorithm
+	// t_vect	origin = sub_vect(ray.orig, cy->center);
+	// t_vect world_pos = add_vect(origin, multi_vect(ray.dir, *closestT));
+	// double t = dot_product((sub_vect(world_pos, cy->center)), normalize(cy->dir));
+	// t_vect pt = add_vect(cy->center, multi_vect(normalize(cy->dir), t));
+	// if (t > cy->h / 2 || t < -cy->h / 2)
+	// {
+	// 	*closestT = DBL_MAX;
+	// 	return (0);
+	// }
+
+	// // cylinder caps
+	
+	return (1);
+}
+
 double	get_closestt(t_obj *obj, t_ray ray, double *closestT)
 {
 	if (obj->id == SPHERE)
 		return (hit_sphere((t_sphere *) obj->content, ray, closestT));
-	else if (obj->id == PLANE)
+	if (obj->id == PLANE)
 		return (hit_plane((t_plane *) obj->content, ray, closestT));
-	else
-		return (0);
+	if (obj->id == CYLINDER)
+		return (hit_cylinder((t_cylinder *) obj->content, ray, closestT));
+	return (0);
 }

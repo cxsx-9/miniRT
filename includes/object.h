@@ -6,7 +6,7 @@
 /*   By: csantivi <csantivi@student.42bangkok.co    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/06/09 13:44:11 by tkraikua          #+#    #+#             */
-/*   Updated: 2023/07/15 12:01:56 by csantivi         ###   ########.fr       */
+/*   Updated: 2023/07/16 01:13:10 by csantivi         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -48,8 +48,11 @@ typedef struct s_plane
 typedef struct s_cylinder
 {
 	t_vect		center;
+	t_vect		top;
+	t_vect		bottom;
 	t_vect		dir;
 	double		d;
+	double		r;
 	double		h;
 	t_vect		color;
 }	t_cylinder;
