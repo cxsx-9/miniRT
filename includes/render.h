@@ -6,7 +6,7 @@
 /*   By: csantivi <csantivi@student.42bangkok.co    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/06/27 12:48:34 by tkraikua          #+#    #+#             */
-/*   Updated: 2023/07/15 18:07:51 by csantivi         ###   ########.fr       */
+/*   Updated: 2023/07/18 21:10:32 by csantivi         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -45,8 +45,10 @@ t_vect		reflect(t_vect incident, t_vect norm);
 t_vect		new_ray_origin(t_payload *load);
 
 t_vect		sky_color(t_vect c, t_scene *scene);
-t_vect		ambient_light(t_pixel *p, t_scene *s, t_payload *load);
+t_vect		ambient_light(t_pixel *p, t_scene *s, t_vect color);
+t_vect		add_ambient(t_vect base, t_al *al, int i);
 t_vect		point_light(t_pixel *p, t_scene *s, t_payload *load, t_ray *ray);
+t_vect		lighting(t_pixel *p, t_scene *s, t_payload *load, t_ray *ray);
 
 t_vect		get_object_color(t_obj *obj);
 int			obj_block(t_ray ray, t_scene *scene, t_light *light);

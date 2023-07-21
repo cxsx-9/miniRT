@@ -6,7 +6,7 @@
 /*   By: csantivi <csantivi@student.42bangkok.co    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/06/09 13:53:22 by tkraikua          #+#    #+#             */
-/*   Updated: 2023/07/15 12:18:30 by csantivi         ###   ########.fr       */
+/*   Updated: 2023/07/18 18:09:23 by csantivi         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -33,10 +33,16 @@ int	get_color(t_vect color)
 	b = (int)(color.z * 255.0);
 	if (color.x > 1)
 		r = 255;
+	else if (color.x < 0)
+		r = 0;
 	if (color.y > 1)
 		g = 255;
+	else if (color.y < 0)
+		g = 0;
 	if (color.z > 1)
 		b = 255;
+	else if (color.z < 0)
+		b = 0;
 	return (r << 16 | g << 8 | b);
 }
 

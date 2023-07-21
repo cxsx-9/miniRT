@@ -6,7 +6,7 @@
 /*   By: csantivi <csantivi@student.42bangkok.co    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/07/15 18:11:06 by csantivi          #+#    #+#             */
-/*   Updated: 2023/07/15 18:15:25 by csantivi         ###   ########.fr       */
+/*   Updated: 2023/07/16 14:43:49 by csantivi         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -35,6 +35,16 @@ t_vect	cross_product(t_vect v, t_vect u)
 	vect.x = v.y * u.z - v.z * u.y;
 	vect.y = v.z * u.x - v.x * u.z;
 	vect.z = v.x * u.y - v.y * u.x;
+	return (vect);
+}
+
+t_vect	color_vect(t_vect v, t_vect u)
+{
+	t_vect	vect;
+
+	vect.x = v.x * u.x;
+	vect.y = v.y * u.y;
+	vect.z = v.z * u.z;
 	return (vect);
 }
 

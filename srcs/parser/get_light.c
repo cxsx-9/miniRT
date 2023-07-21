@@ -6,7 +6,7 @@
 /*   By: csantivi <csantivi@student.42bangkok.co    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/07/05 22:23:08 by csantivi          #+#    #+#             */
-/*   Updated: 2023/07/16 01:35:11 by csantivi         ###   ########.fr       */
+/*   Updated: 2023/07/18 15:16:13 by csantivi         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -44,6 +44,7 @@ void	get_light(char **data, t_minirt *minirt)
 	light = malloc(sizeof(t_light));
 	get_coordinate(ft_split(data[1], ','), &light->center);
 	get_double(data[2], &light->b);
+	get_color_input(ft_split(data[3], ','), &light->color);
 	light->next = NULL;
 	lst_lights_addback(&minirt->scene->lights, light);
 }
