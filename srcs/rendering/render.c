@@ -6,7 +6,7 @@
 /*   By: csantivi <csantivi@student.42bangkok.co    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/06/27 12:47:35 by tkraikua          #+#    #+#             */
-/*   Updated: 2023/07/18 23:23:37 by csantivi         ###   ########.fr       */
+/*   Updated: 2023/07/21 13:23:34 by csantivi         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -85,7 +85,6 @@ t_vect	per_pixel(t_camera *camera, t_scene *scene, int x, int y)
 		if (load.hit_distance < 0)
 			return (sky_color(pixel.c, scene));
 		ray.orig = new_ray_origin(&load);
-		// pixel.c = point_light(&pixel, scene, &load, &ray);
 		pixel.c = lighting(&pixel, scene, &load, &ray);
 		pixel.multiplier *= 0.3;
 		ray.dir = reflect(ray.dir, load.world_norm);

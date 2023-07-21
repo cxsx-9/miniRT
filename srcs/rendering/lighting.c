@@ -6,7 +6,7 @@
 /*   By: csantivi <csantivi@student.42bangkok.co    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/07/15 12:32:59 by csantivi          #+#    #+#             */
-/*   Updated: 2023/07/21 12:55:58 by csantivi         ###   ########.fr       */
+/*   Updated: 2023/07/21 17:03:46 by csantivi         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -14,15 +14,13 @@
 #include "color.h"
 #include "util.h"
 
-
-t_vect	reverse_color(t_vect color)
+t_vect	rev_color(t_vect color)
 {
-	t_vect c;
+	t_vect	c;
 
 	c.x = 1 - color.x;
 	c.y = 1 - color.y;
 	c.z = 1 - color.z;
-
 	return (c);
 }
 
@@ -39,7 +37,6 @@ t_vect	sky_color(t_vect c, t_scene *scene)
 	return (c);
 }
 
-// -----------------   original
 t_vect	ambient_light(t_pixel *p, t_scene *s, t_vect c)
 {
 	t_al	*al;
@@ -49,31 +46,22 @@ t_vect	ambient_light(t_pixel *p, t_scene *s, t_vect c)
 	if (!al || p->i > 0)
 		return (p->c);
 	result = multi_vect(al->color, al->r);
-	result = sub_vect(result, reverse_color(c));
+	result = sub_vect(result, rev_color(c));
 	return (result);
 }
 
-t_vect	point_light(t_pixel *p, t_scene *s, t_payload *load, t_ray *ray)
+double	phong_light(t_pixel *p, t_payload *load, t_light *light, t_ray *ray)
 {
-	t_light	*light;
-	t_vect	obj_color;
-	double	i;
+	double	diffuse;
+	double	specular;
+	t_vect	reflect_dir;
+	t_vect	view_dir;
 
-	light = s->lights;
-	obj_color = get_object_color(load->obj);
-	p->c = ambient_light(p, s, obj_color);
-	while (light)
-	{
-		light->light_dir = normalize(sub_vect(light->center, ray->orig));
-		if (!obj_block(*ray, s, light))
-		{
-			i = fmax(dot_product(load->world_norm, light->light_dir), 0.0);
-			obj_color = multi_vect(obj_color, (i * light->b));
-			p->c = add_vect(p->c, multi_vect(obj_color, p->multiplier));
-		}
-		light = light->next;
-	}
-	return (p->c);
+	diffuse = fmax(dot_product(load->world_norm, light->light_dir), 0.0);
+	reflect_dir = normalize(reflect(light->light_dir, load->world_norm));
+	view_dir = normalize(sub_vect(load->world_pos, ray->orig));
+	specular = pow(fmax(dot_product(reflect_dir, view_dir), 0.0), 3);
+	return ((diffuse + specular) / 2 * light->b * p->multiplier);
 }
 
 t_vect	lighting(t_pixel *p, t_scene *s, t_payload *load, t_ray *ray)
@@ -83,7 +71,7 @@ t_vect	lighting(t_pixel *p, t_scene *s, t_payload *load, t_ray *ray)
 	t_vect	result;
 	double	intense;
 
-	result = color(0,0,0);
+	result = color(0, 0, 0);
 	light = s->lights;
 	obj_color = get_object_color(load->obj);
 	result = ambient_light(p, s, obj_color);
@@ -92,22 +80,17 @@ t_vect	lighting(t_pixel *p, t_scene *s, t_payload *load, t_ray *ray)
 		light->light_dir = normalize(sub_vect(light->center, ray->orig));
 		if (!obj_block(*ray, s, light))
 		{
-			// Normal lighting;
-			// intense = fmax(dot_product(load->world_norm, light->light_dir), 0.0);
-			// intense = intense * light->b * p->multiplier;
-
-			// Phong lighting;
-			t_vect reflect_dir = normalize(reflect(light->light_dir, load->world_norm));
-			t_vect view_dir = normalize(sub_vect(load->world_pos, ray->orig));
-            intense = pow(fmax(dot_product(reflect_dir, view_dir), 0.0), 2) * light->b * p->multiplier;
-
-            // Mixing light
-            result = add_vect(result, multi_vect(light->color, intense));
+			intense = phong_light(p, load, light, ray);
+			result = add_vect(result, multi_vect(light->color, intense));
 		}
 		light = light->next;
 	}
-	result = sub_vect(result, reverse_color(obj_color));
+	result = sub_vect(result, rev_color(obj_color));
 	if (p->i > 0)
-		result = sub_vect(p->c, multi_vect(reverse_color(result), p->multiplier));
+		result = sub_vect(p->c, multi_vect(rev_color(result), p->multiplier));
 	return (result);
 }
+
+// Normal light  (diffuse)
+// intense = fmax(dot_product(load->world_norm, light->light_dir), 0.0);
+// intense = intense * light->b * p->multiplier;
