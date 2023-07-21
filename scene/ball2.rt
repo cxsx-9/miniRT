@@ -1,12 +1,12 @@
 C	0,20,70		0,-0.01,-1		35
 A	0.2						255,255,255
 
-L	0,30,50			0.7		255,255,255     #top light      white light
-# L	0,30,50			0.5		250,210,140     #top light      warm light
-# L	0,30,20			0.2		255,255,255     #top light    (over the ball)
+# L	0,30,50			0.7		255,255,255     #top light      white light
+L	0,30,50			0.5		250,210,140     #top light      warm light
+L	0,30,20			0.2		255,255,255     #top light    (over the ball)
 
-L	-19,1,-49		0.3		25,250,255     #L floor light
-L	19,1,-49		0.3		255,250,25     #R floor light
+L	-19,1,-49		0.3		0,255,255     #L floor light
+L	19,1,-49		0.3		255,255,0     #R floor light
 
 L	-19,39,-49		0.3		255,255,255     #L top light
 L	19,39,-49		0.3		255,255,255     #R top light
