@@ -6,7 +6,7 @@
 /*   By: csantivi <csantivi@student.42bangkok.co    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/07/15 12:32:59 by csantivi          #+#    #+#             */
-/*   Updated: 2023/07/21 17:03:46 by csantivi         ###   ########.fr       */
+/*   Updated: 2023/07/21 18:43:01 by csantivi         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -60,7 +60,7 @@ double	phong_light(t_pixel *p, t_payload *load, t_light *light, t_ray *ray)
 	diffuse = fmax(dot_product(load->world_norm, light->light_dir), 0.0);
 	reflect_dir = normalize(reflect(light->light_dir, load->world_norm));
 	view_dir = normalize(sub_vect(load->world_pos, ray->orig));
-	specular = pow(fmax(dot_product(reflect_dir, view_dir), 0.0), 3);
+	specular = pow(fmax(dot_product(reflect_dir, view_dir), 0.0), 12);
 	return ((diffuse + specular) / 2 * light->b * p->multiplier);
 }
 
