@@ -6,7 +6,7 @@
 /*   By: csantivi <csantivi@student.42bangkok.co    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/06/29 01:06:41 by csantivi          #+#    #+#             */
-/*   Updated: 2023/07/16 01:16:14 by csantivi         ###   ########.fr       */
+/*   Updated: 2023/07/26 11:45:55 by csantivi         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -58,7 +58,7 @@ void	get_cylinder(char **data, t_minirt *minirt)
 	get_double(data[3], &cy->d);
 	cy->r = cy->d / 2;
 	get_double(data[4], &cy->h);
-	cy->top = add_vect(cy->center ,multi_vect(cy->dir, cy->h / 2));
+	cy->top = add_vect(cy->center, multi_vect(cy->dir, cy->h / 2));
 	cy->bottom = sub_vect(cy->center, multi_vect(cy->dir, cy->h / 2));
 	get_color_input(ft_split(data[5], ','), &cy->color);
 	objs->id = CYLINDER;

@@ -6,7 +6,7 @@
 /*   By: csantivi <csantivi@student.42bangkok.co    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/06/28 15:27:12 by csantivi          #+#    #+#             */
-/*   Updated: 2023/07/15 00:04:44 by csantivi         ###   ########.fr       */
+/*   Updated: 2023/07/26 11:43:58 by csantivi         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -15,17 +15,17 @@
 void	get_object(char **data, t_minirt *minirt)
 {
 	if (same_str(data[0], "C"))
-		return (get_camera(data, minirt));
+		get_camera(data, minirt);
 	else if (same_str(data[0], "A"))
-		return (get_ambient(data, minirt));
+		get_ambient(data, minirt);
 	else if (same_str(data[0], "L"))
-		return (get_light(data, minirt));
+		get_light(data, minirt);
 	else if (same_str(data[0], "sp"))
-		return (get_sphere(data, minirt));
+		get_sphere(data, minirt);
 	else if (same_str(data[0], "pl"))
-		return (get_plane(data, minirt));
+		get_plane(data, minirt);
 	else if (same_str(data[0], "cy"))
-		return (get_cylinder(data, minirt));
+		get_cylinder(data, minirt);
 	free_2d(data);
 }
 
