@@ -6,7 +6,7 @@
 /*   By: csantivi <csantivi@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/06/28 15:34:02 by csantivi          #+#    #+#             */
-/*   Updated: 2023/07/10 22:55:25 by csantivi         ###   ########.fr       */
+/*   Updated: 2023/07/28 17:20:01 by csantivi         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -36,7 +36,7 @@ int	good_unit(char **unit_vect)
 	return (1);
 }
 
-const int	get_max(char *type)
+static int	get_max(char *type)
 {
 	if (same_str(type, "FOV"))
 		return (180);

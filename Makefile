@@ -1,7 +1,9 @@
 NAME = miniRT
 
 SRC =	srcs/main.c		\
-		srcs/struct/camera.c		\
+		srcs/struct/camera1.c		\
+		srcs/struct/camera2.c		\
+		srcs/struct/camera3.c		\
 		srcs/struct/color.c			\
 		srcs/struct/init.c			\
 		srcs/rendering/render.c		\
@@ -36,7 +38,7 @@ SRC =	srcs/main.c		\
 
 OBJ = $(SRC:.c=.o)
 
-CFLAG = #-g -fsanitize=address # -Wall -Wextra -Werror
+CFLAG = -Wall -Wextra -Werror # -g -fsanitize=address 
 CC = cc
 
 MLX = $(MLXDIR)libmlx.a

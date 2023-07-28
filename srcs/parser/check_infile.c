@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   check_infile.c                                     :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: csantivi <csantivi@student.42bangkok.co    +#+  +:+       +#+        */
+/*   By: csantivi <csantivi@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/06/27 00:00:45 by csantivi          #+#    #+#             */
-/*   Updated: 2023/06/30 23:55:51 by csantivi         ###   ########.fr       */
+/*   Updated: 2023/07/28 17:24:38 by csantivi         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -48,6 +48,8 @@ int	check_line(char *line, t_obj_count *counter)
 	char	**data;
 	int		error_status;
 
+	data = NULL;
+	error_status = 1;
 	if (is_inside('#', line))
 	{
 		new_line = ignore_comment(line);

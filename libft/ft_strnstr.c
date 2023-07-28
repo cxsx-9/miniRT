@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   ft_strnstr.c                                       :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: csantivi <csantivi@student.42bangkok.co    +#+  +:+       +#+        */
+/*   By: csantivi <csantivi@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/02/19 23:28:43 by csantivi          #+#    #+#             */
-/*   Updated: 2022/03/02 23:21:54 by csantivi         ###   ########.fr       */
+/*   Updated: 2023/07/28 15:43:15 by csantivi         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -28,7 +28,7 @@ char	*ft_strnstr(const char *s1, const char *s2, size_t n)
 	{
 		j = 0;
 		while (i + j < n && str1[i + j] == str2[j] && str1[i + j] && str2[j])
-				j++;
+			j++;
 		if (!str2[j])
 			return (str1 + i);
 		i++;

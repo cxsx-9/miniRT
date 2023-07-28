@@ -3,89 +3,54 @@
 /*                                                        :::      ::::::::   */
 /*   main.c                                             :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: csantivi <csantivi@student.42bangkok.co    +#+  +:+       +#+        */
+/*   By: csantivi <csantivi@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/06/08 13:42:53 by tkraikua          #+#    #+#             */
-/*   Updated: 2023/07/15 00:05:11 by csantivi         ###   ########.fr       */
+/*   Updated: 2023/07/28 16:56:05 by csantivi         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "minirt.h"
 
-// void	set_camera(t_minirt *minirt)
-// {
-// 	t_camera	*cam;
-
-// 	cam = malloc(sizeof(t_camera));
-// 	cam->pos = vect(0, 0, 0);
-// 	cam->forward = vect(0, 0, 0);
-// 	cam->fov = 70;
-// 	cam->aspect_ratio = (double) WIN_WIDTH / (double) WIN_HEIGHT;
-// 	cam->ray = malloc(sizeof(t_ray) * WIN_HEIGHT * WIN_WIDTH);
-// 	calculate_ray(cam);
-// 	minirt->cam = cam;
-// }
-
-// void	set_object(t_minirt *minirt)
-// {
-// 	t_obj		*objs;
-// 	t_obj		*tmp_obj;
-// 	t_sphere	*sphere;
-
-// 	objs = malloc(sizeof(t_obj));
-
-// 	// first sphere
-// 	sphere = malloc(sizeof(t_sphere));
-// 	sphere->center = vect(-2, 0, -10);
-// 	sphere->d = 5;
-// 	sphere->r = sphere->d / 2;
-// 	sphere->color = color(136, 8, 8);
-	
-// 	objs->id = SPHERE;
-// 	objs->content = (void*) sphere;
-// 	objs->next = NULL;
-
-// 	tmp_obj = malloc(sizeof(t_obj));
-
-// 	// second sphere
-// 	sphere = malloc(sizeof(t_sphere));
-// 	sphere->center = vect(10, 0, -30);
-// 	sphere->d = 5;
-// 	sphere->r = sphere->d / 2;
-// 	sphere->color = color(20, 8, 138);
-
-// 	tmp_obj->id = SPHERE;
-// 	tmp_obj->content = (void*) sphere;
-// 	tmp_obj->next = NULL;
-
-// 	objs->next = tmp_obj;
-	
-// 	// minirt->objs = objs;
-// 	minirt->scene->objs = objs;
-// }
-
-int main( int ac, char **av )
+void	set_camera(t_camera *cam)
 {
-	t_minirt *minirt;
+	cam->forward = normalize(cam->forward);
+	if (cam->forward.x == 0 && cam->forward.y == 1 && cam->forward.z == 0)
+	{
+		cam->right = vect(1, 0, 0);
+		cam->up = vect(0, 0, 1);
+	}
+	else if (cam->forward.x == 0 && cam->forward.y == -1 && cam->forward.z == 0)
+	{
+		cam->right = vect(1, 0, 0);
+		cam->up = vect(0, 0, -1);
+	}
+	else
+	{
+		cam->right = cross_product(cam->forward, vect(0, 1, 0));
+		cam->up = cross_product(cam->right, cam->forward);
+	}
+}
+
+int	main(int ac, char **av)
+{
+	t_minirt	*minirt;
 
 	if (ac != 2)
 		return (0);
 	minirt = init_minirt();
 	if (!check_all(av[1]))
 	{
-		ft_putstr_fd(": Fail\n", 2);
+		ft_putstr_fd("Error\n", 2);
+		minirt->status = 1;
 		close_event(minirt);
 	}
 	get_all(av[1], minirt);
-	printf("Running Program\n"); // dbug
-
-	minirt->cam->forward = normalize(minirt->cam->forward);
-	minirt->cam->right = cross_product(minirt->cam->forward, vect(0, 1, 0));
-	minirt->cam->up = cross_product(minirt->cam->right, minirt->cam->forward);
-
+	printf("Running Program\n");
+	set_camera(minirt->cam);
 	mlx_loop_hook(minirt->mlx, &loop_event, minirt);
-	mlx_hook(minirt->win, KeyPress, KeyPressMask, &handle_keypress, minirt);
-	mlx_hook(minirt->win, KeyRelease, KeyReleaseMask, &handle_keyrelease, minirt);
-	mlx_hook(minirt->win, DestroyNotify, NoEventMask, &close_event, minirt);
-    mlx_loop(minirt->mlx);
+	mlx_hook(minirt->win, 02, 1L << 0, &handle_keypress, minirt);
+	mlx_hook(minirt->win, 03, 1L << 1, &handle_keyrelease, minirt);
+	mlx_hook(minirt->win, 17, 0L, &close_event, minirt);
+	mlx_loop(minirt->mlx);
 }

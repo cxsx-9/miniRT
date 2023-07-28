@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   render.h                                           :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: csantivi <csantivi@student.42bangkok.co    +#+  +:+       +#+        */
+/*   By: csantivi <csantivi@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/06/27 12:48:34 by tkraikua          #+#    #+#             */
-/*   Updated: 2023/07/18 21:10:32 by csantivi         ###   ########.fr       */
+/*   Updated: 2023/07/28 17:16:25 by csantivi         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -32,7 +32,7 @@ typedef struct s_pixel
 
 void		draw(t_minirt *minirt);
 
-t_payload	miss(t_ray ray);
+t_payload	miss(void);
 t_payload	get_closest_hit(t_ray ray, double hit_d, t_obj *obj);
 void		closest_hit_pl(t_ray ray, double hit_d, t_plane *p, t_payload *l);
 void		closest_hit_sp(t_ray ray, double hit_d, t_sphere *s, t_payload *l);

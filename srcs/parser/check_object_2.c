@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   check_object_2.c                                   :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: csantivi <csantivi@student.42bangkok.co    +#+  +:+       +#+        */
+/*   By: csantivi <csantivi@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/06/30 23:36:45 by csantivi          #+#    #+#             */
-/*   Updated: 2023/07/01 20:38:03 by csantivi         ###   ########.fr       */
+/*   Updated: 2023/07/28 17:19:40 by csantivi         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -14,7 +14,6 @@
 
 int	check_cylinder(char **data, t_obj_count *counter)
 {
-	char	**input;
 	int		status;
 
 	counter->cylinder += 1;

@@ -1,12 +1,16 @@
-# C	0,10,90         0,0,-1		45          # main camera Normal
-C	0,10,120		0,0,-1		23          # main camera Cool
+C	0,10,90         0,0,-1		45          # main camera Normal
+# C	0,10,120		0,1,0		23          # main camera UP
+# C	0,10,120		0,-1,0		23          # main camera DOWN
 A	0.2 			255,255,255
 
 L	0,30,60			0.8		255,255,255     #top light      white light
-# L	30,30,60		0.5		250,210,140     #top light      warm light
+L	30,30,60		0.5		250,210,140     #top light      warm light
 
 sp	0,10,0			20		255,255,255		# L
+# sp	0,50,120			10		255,255,255		# L
+# sp	0,-40,120			10		255,255,255		# L
 # sp	13,5,30			10		250,240,190		# M
 # sp	-15,3,10		6		250,240,190		# S
-# pl  0,0,0       0,1,0   255,255,255     # floor
+pl  0,0,0       0,1,0   255,255,255     # floor
 # pl  0,0,0       0,1,0   250,240,190     # floor gold color
+cy	-10,0,0	1.0,1.0,0.0	5 50 10,0,255

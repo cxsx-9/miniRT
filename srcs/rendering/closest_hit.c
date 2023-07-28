@@ -3,17 +3,17 @@
 /*                                                        :::      ::::::::   */
 /*   closest_hit.c                                      :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: csantivi <csantivi@student.42bangkok.co    +#+  +:+       +#+        */
+/*   By: csantivi <csantivi@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/07/15 11:29:02 by csantivi          #+#    #+#             */
-/*   Updated: 2023/07/16 01:20:04 by csantivi         ###   ########.fr       */
+/*   Updated: 2023/07/28 17:15:53 by csantivi         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "minirt.h"
 #include "render.h"
 
-t_payload	miss(t_ray ray)
+t_payload	miss(void)
 {
 	t_payload	payload;
 
@@ -39,17 +39,23 @@ void	closest_hit_pl(t_ray ray, double hit_d, t_plane *p, t_payload *l)
 
 void	closest_hit_cy(t_ray ray, double hit_d, t_cylinder *cy, t_payload *load)
 {
-	t_vect	origin = sub_vect(ray.orig, cy->center);
-	// t_vect	origin = ray.orig;
+	t_vect	origin;
+	t_vect	pt;
+	double	t;
+
+	origin = sub_vect(ray.orig, cy->center);
 	load->world_pos = add_vect(origin, multi_vect(ray.dir, hit_d));
-	// load->world_norm = multi_vect(ray.dir, -1);
+	t = dot_product(load->world_pos, cy->dir);
 	load->world_pos = add_vect(load->world_pos, cy->center);
-
-	double t = dot_product((sub_vect(load->world_pos, cy->center)), cy->dir);
-	t_vect pt = add_vect(cy->center, multi_vect(cy->dir, t));
+	pt = add_vect(cy->center, multi_vect(cy->dir, t));
 	load->world_norm = normalize(sub_vect(load->world_pos, pt));
-
-	// load->world_norm = normalize(vect(load->world_pos.x - cy->center.x, load->world_pos.y, load->world_pos.z - cy->center.z));
+	if (t >= cy->h / 2 - EPSILON || t <= -cy->h / 2 + EPSILON)
+	{
+		if (t >= cy->h / 2 - EPSILON)
+			load->world_norm = cy->dir;
+		else if (t <= -cy->h / 2 + EPSILON)
+			load->world_norm = multi_vect(cy->dir, -1);
+	}
 }
 
 t_payload	get_closest_hit(t_ray ray, double hit_d, t_obj *obj)

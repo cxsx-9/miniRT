@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   render.c                                           :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: csantivi <csantivi@student.42bangkok.co    +#+  +:+       +#+        */
+/*   By: csantivi <csantivi@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/06/27 12:47:35 by tkraikua          #+#    #+#             */
-/*   Updated: 2023/07/21 13:23:34 by csantivi         ###   ########.fr       */
+/*   Updated: 2023/07/28 17:16:48 by csantivi         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -14,7 +14,7 @@
 #include "render.h"
 #include "color.h"
 
-t_payload	ray_trace(t_camera *camera, t_scene *scene, t_ray ray)
+t_payload	ray_trace(t_scene *scene, t_ray ray)
 {
 	t_obj	*objs;
 	t_obj	*closest_obj;
@@ -35,7 +35,7 @@ t_payload	ray_trace(t_camera *camera, t_scene *scene, t_ray ray)
 		objs = objs->next;
 	}
 	if (closest_obj == NULL)
-		return (miss(ray));
+		return (miss());
 	return (get_closest_hit(ray, hit_distance, closest_obj));
 }
 
@@ -81,7 +81,7 @@ t_vect	per_pixel(t_camera *camera, t_scene *scene, int x, int y)
 	pixel.i = 0;
 	while (pixel.i < camera->bounces)
 	{
-		load = ray_trace(camera, scene, ray);
+		load = ray_trace(scene, ray);
 		if (load.hit_distance < 0)
 			return (sky_color(pixel.c, scene));
 		ray.orig = new_ray_origin(&load);
