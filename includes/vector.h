@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   vector.h                                           :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: csantivi <csantivi@student.42bangkok.co    +#+  +:+       +#+        */
+/*   By: csantivi <csantivi@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/06/09 17:07:28 by tkraikua          #+#    #+#             */
-/*   Updated: 2023/07/16 14:44:00 by csantivi         ###   ########.fr       */
+/*   Updated: 2023/07/28 17:48:07 by csantivi         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -33,7 +33,5 @@ t_vect	cross_product(t_vect v, t_vect u);
 double	dist_vect(t_vect v);
 
 t_vect	normalize(t_vect v);
-
-t_vect	color_vect(t_vect v, t_vect u);
 
 #endif

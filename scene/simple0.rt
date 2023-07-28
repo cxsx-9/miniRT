@@ -4,7 +4,7 @@ C	0,10,90         0,0,-1		45          # main camera Normal
 A	0.2 			255,255,255
 
 L	0,30,60			0.8		255,255,255     #top light      white light
-L	30,30,60		0.5		250,210,140     #top light      warm light
+# L	30,30,60		0.5		250,210,140     #top light      warm light
 
 sp	0,10,0			20		255,255,255		# L
 # sp	0,50,120			10		255,255,255		# L

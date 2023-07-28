@@ -38,7 +38,7 @@ SRC =	srcs/main.c		\
 
 OBJ = $(SRC:.c=.o)
 
-CFLAG = -Wall -Wextra -Werror # -g -fsanitize=address 
+CFLAG = -Wall -Wextra -Werror #-g -fsanitize=address 
 CC = cc
 
 MLX = $(MLXDIR)libmlx.a

@@ -6,7 +6,7 @@
 /*   By: csantivi <csantivi@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/06/08 13:42:53 by tkraikua          #+#    #+#             */
-/*   Updated: 2023/07/28 16:56:05 by csantivi         ###   ########.fr       */
+/*   Updated: 2023/07/28 17:51:06 by csantivi         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -37,7 +37,10 @@ int	main(int ac, char **av)
 	t_minirt	*minirt;
 
 	if (ac != 2)
-		return (0);
+	{
+		ft_putstr_fd("Error\n", 2);
+		return (1);
+	}
 	minirt = init_minirt();
 	if (!check_all(av[1]))
 	{
